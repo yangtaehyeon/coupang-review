@@ -1,0 +1,11 @@
+.main {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-section);
+}
+
+.empty {
+  color: var(--text-2);
+  text-align: center;
+  padding: var(--space-12) 0;
+  font-size: var(--fs-base);
+}

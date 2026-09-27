@@ -1,0 +1,54 @@
+/* 사양표: 항목 | 값 두 칸 */
+.specs {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+}
+.item {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+}
+.item + .item {
+  border-top: 1px solid var(--line);
+}
+.label {
+  padding: 0.75rem 1rem;
+  background: var(--bg-soft);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.value {
+  padding: 0.75rem 1rem;
+  font-size: var(--fs-ui);
+  font-weight: 600;
+}
+
+.more {
+  margin-top: var(--space-3);
+}
+.more summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 2.75rem;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+}
+.more summary::-webkit-details-marker {
+  display: none;
+}
+.caret {
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.more[open] .caret {
+  transform: rotate(180deg);
+}
+.more .specs {
+  margin-top: var(--space-2);
+}

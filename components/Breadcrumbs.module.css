@@ -1,0 +1,43 @@
+.crumbs ol {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  list-style: none;
+  padding: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--text-3);
+}
+.crumbs li {
+  display: flex;
+  align-items: center;
+  flex: none;
+  min-width: 0;
+}
+.crumbs li:last-child {
+  flex: 1 1 auto;
+}
+.crumbs li + li::before {
+  content: "›";
+  content: "›" / "";
+  margin-inline: 0.5rem;
+  color: var(--text-3);
+}
+.crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.crumbs a:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+.crumbs [aria-current="page"] {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

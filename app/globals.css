@@ -1,0 +1,483 @@
+/*
+ * 디자인 토큰: 개인 리뷰 블로그 (인플루언서 블로그 스킨)
+ * 따뜻한 스톤 그레이 + 코랄 포인트 + 파스텔 카테고리 톤.
+ * 프로필 · 해시태그 · 썸네일 카드 피드 · 사이드바 위젯 구조.
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Surfaces */
+  --bg: #ffffff;
+  --bg-soft: #f9f9f9;
+  --bg-band: #f3f3f3;
+  --card: #ffffff;
+  --line: #e5e5e5;
+  --line-strong: #d0d0d0;
+
+  /* Text */
+  --text: #1a1a1a;
+  --text-2: #666666;
+  --text-3: #999999;
+
+  /* Brand: dark blue */
+  --brand: #0052cc;
+  --brand-hover: #003da3;
+  --brand-bright: #0066ff;
+  --brand-soft: #f0f4ff;
+  --on-brand: #ffffff;
+  --focus: #0052cc;
+
+  /* Semantic */
+  --pos: #0f7a55;
+  --pos-soft: #e2f6ee;
+  --neg: #c23256;
+  --neg-soft: #ffe9ee;
+  --star: #ffb020;
+  --highlight: #ffe89a;
+  --brand-text: #0047b3;
+
+  /* 보조 톤 (콜아웃·아이콘 타일) */
+  --tone-sky-bg: #eaf2ff;
+  --tone-sky-fg: #1d4ed8;
+  --tone-mint-bg: #e6f6ef;
+  --tone-mint-fg: #0f7a55;
+  --tone-peach-bg: #fff1e8;
+  --tone-peach-fg: #c2410c;
+  --tone-lilac-bg: #f1edff;
+  --tone-lilac-fg: #5b45c9;
+  --tone-lemon-bg: #fff8db;
+  --tone-lemon-fg: #8a6400;
+  --tone-rose-bg: #ffecef;
+  --tone-rose-fg: #c23256;
+  --tone-slate-bg: #f1f3f5;
+  --tone-slate-fg: #475569;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.05), 0 4px 12px rgb(0 0 0 / 0.08);
+  --shadow-lift: 0 2px 6px rgb(0 0 0 / 0.1), 0 16px 36px rgb(0 0 0 / 0.15);
+
+  /* Type */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.875rem;
+  --fs-ui: 0.9375rem;
+  --fs-base: 1rem;
+  --fs-prose: 1.0625rem;
+  --fs-lead: clamp(1.0625rem, 1.03rem + 0.15vw, 1.125rem);
+  --fs-h3: clamp(1.125rem, 1.07rem + 0.25vw, 1.25rem);
+  --fs-h2: clamp(1.375rem, 1.25rem + 0.55vw, 1.6875rem);
+  --fs-h1: clamp(1.75rem, 1.45rem + 1.3vw, 2.375rem);
+  --lh-prose: 1.85;
+  --lh-ui: 1.55;
+
+  /* Layout */
+  --container: 70rem;
+  --sidebar: 18.5rem;
+  --measure: 45rem;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+  --header-h: 4rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-section: clamp(3rem, 2.4rem + 2.6vw, 4.5rem);
+
+  /* Radii */
+  --r-s: 8px;
+  --r-m: 12px;
+  --r-l: 18px;
+  --r-xl: 24px;
+  --r-full: 999px;
+
+  /* Z-index scale */
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-skip: 100;
+
+  /* Motion */
+  --dur-1: 140ms;
+  --dur-2: 220ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1a;
+    --bg-soft: #2a2a2a;
+    --bg-band: #333333;
+    --card: #242424;
+    --line: #404040;
+    --line-strong: #555555;
+
+    --text: #f5f5f5;
+    --text-2: #b3b3b3;
+    --text-3: #808080;
+
+    --brand: #4d94ff;
+    --brand-hover: #66a3ff;
+    --brand-bright: #66a3ff;
+    --brand-soft: #1a2966;
+    --on-brand: #ffffff;
+    --focus: #66a3ff;
+
+    --pos: #52d3a0;
+    --pos-soft: #10291f;
+    --neg: #ff8aa3;
+    --neg-soft: #36161f;
+    --highlight: #5c4a12;
+    --brand-text: #8cb8ff;
+
+    --tone-sky-bg: #172338;
+    --tone-sky-fg: #8cb8ff;
+    --tone-mint-bg: #12291f;
+    --tone-mint-fg: #5fd6a4;
+    --tone-peach-bg: #33200f;
+    --tone-peach-fg: #ffab78;
+    --tone-lilac-bg: #221c3d;
+    --tone-lilac-fg: #b3a3ff;
+    --tone-lemon-bg: #2e2708;
+    --tone-lemon-fg: #f2cc55;
+    --tone-rose-bg: #36161f;
+    --tone-rose-fg: #ff8aa3;
+    --tone-slate-bg: #23252a;
+    --tone-slate-fg: #b8bec8;
+
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5);
+    --shadow-lift: 0 2px 6px rgb(0 0 0 / 0.5), 0 16px 36px rgb(0 0 0 / 0.6);
+  }
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-ui);
+  font-weight: 400;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+main {
+  flex: 1 0 auto;
+}
+h1,
+h2,
+h3 {
+  color: var(--text);
+  text-wrap: balance;
+}
+p,
+li,
+dd,
+figcaption {
+  text-wrap: pretty;
+}
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+img,
+picture,
+video {
+  height: auto;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+table {
+  border-collapse: collapse;
+}
+time,
+data,
+.num {
+  font-variant-numeric: tabular-nums;
+}
+::selection {
+  background: var(--brand-soft);
+  color: var(--text);
+}
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+[id] {
+  scroll-margin-top: calc(var(--header-h) + 1.25rem);
+}
+
+/* Layout helpers */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+/* 본문 + 사이드바 2단 (모바일 1단, 사이드바는 본문 아래) */
+.with-sidebar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-10);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-section);
+}
+@media (min-width: 64rem) {
+  .with-sidebar {
+    grid-template-columns: minmax(0, 1fr) var(--sidebar);
+    gap: var(--space-10);
+    align-items: start;
+  }
+}
+.page {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-section);
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: var(--z-skip);
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--r-m);
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  transform: translateY(-150%);
+}
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* Shared type roles */
+.page-title {
+  font-size: var(--fs-h1);
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+.section-title {
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin-bottom: var(--space-4);
+}
+/* 블로그 섹션 머리 (예: 최신 글) */
+.feed-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: var(--space-5);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+.feed-title .count {
+  color: var(--brand);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.lede {
+  font-size: var(--fs-lead);
+  line-height: 1.75;
+  color: var(--text-2);
+}
+
+/* 해시태그 칩 */
+.hashtag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: var(--r-full);
+  background: var(--bg-band);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out);
+}
+.hashtag::before {
+  content: "#";
+  margin-right: 0.125rem;
+  color: var(--brand-bright);
+  font-weight: 700;
+}
+a.hashtag:hover {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+/* Chip link (카테고리) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2.25rem;
+  padding: 0 0.875rem;
+  border-radius: var(--r-full);
+  background: var(--bg-band);
+  color: var(--text-2);
+  font-size: var(--fs-ui);
+  font-weight: 650;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out);
+}
+.chip:hover {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+.chip svg {
+  width: 1.05em;
+  height: 1.05em;
+}
+
+/* Plain text link inside UI copy */
+.text-link {
+  color: var(--brand);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  transition: text-decoration-color var(--dur-2) var(--ease-out);
+}
+.text-link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Buttons (내부 이동용) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-height: 2.75rem;
+  padding: 0 1.125rem;
+  border-radius: var(--r-full);
+  font-size: var(--fs-ui);
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-2) var(--ease-out),
+    transform var(--dur-1) var(--ease-out);
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+.btn-dark {
+  background: var(--text);
+  color: var(--bg);
+}
+.btn-dark:hover {
+  background: color-mix(in srgb, var(--text) 86%, var(--bg));
+}
+.btn-light {
+  background: var(--bg-band);
+  color: var(--text);
+}
+.btn-light:hover {
+  background: var(--line);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 1.125rem;
+  border-radius: var(--r-full);
+  background: var(--bg-band);
+  color: var(--text);
+  font-size: var(--fs-ui);
+  font-weight: 700;
+}
+.btn-secondary:hover {
+  background: var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (forced-colors: active) {
+  .skip-link,
+  .chip,
+  .hashtag,
+  .btn {
+    border: 1px solid CanvasText;
+  }
+}

@@ -1,0 +1,48 @@
+.main {
+  min-width: 0;
+}
+.head {
+  margin-top: var(--space-4);
+  max-width: 40rem;
+}
+.head :global(.lede) {
+  margin-top: var(--space-3);
+}
+.cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--space-8);
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: var(--r-full);
+  background: var(--bg-band);
+  color: var(--text);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  transition:
+    background-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out);
+}
+.tag:hover {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+.hash {
+  margin-right: 0.125rem;
+  color: var(--brand-bright);
+}
+.count {
+  margin-left: 0.5rem;
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.sidebar {
+  min-width: 0;
+}

@@ -1,0 +1,108 @@
+.header {
+  position: relative;
+  z-index: var(--z-header);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "brand"
+    "nav";
+  align-items: center;
+}
+
+.brand {
+  grid-area: brand;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+  min-height: 3.5rem;
+  border-radius: var(--r-s);
+}
+.name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+
+/* 모바일: 로고 아래 가로 스크롤 메뉴 */
+.nav {
+  grid-area: nav;
+  margin-inline: calc(var(--gutter) * -1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar {
+  display: none;
+}
+.list {
+  display: flex;
+  gap: 0.25rem;
+  width: max-content;
+  padding: 0 calc(var(--gutter) - 0.625rem) 0.375rem;
+}
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0.625rem;
+  color: var(--text-2);
+  font-size: var(--fs-ui);
+  font-weight: 650;
+  white-space: nowrap;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.link:hover {
+  color: var(--text);
+}
+.link[aria-current="page"] {
+  color: var(--text);
+  font-weight: 800;
+}
+.link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0.625rem;
+  right: 0.625rem;
+  bottom: 0.375rem;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--brand-bright);
+}
+
+/* 데스크톱: 한 줄, 상단 고정 */
+@media (min-width: 56rem) {
+  .header {
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+  }
+  .inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: "brand nav";
+    min-height: var(--header-h);
+    align-items: center;
+  }
+  .nav {
+    margin-inline: 0;
+    justify-self: center;
+  }
+  .list {
+    padding: 0;
+  }
+  .link {
+    min-height: var(--header-h);
+    padding: 0 0.875rem;
+  }
+  .link[aria-current="page"]::after {
+    left: 0.875rem;
+    right: 0.875rem;
+    bottom: 0.75rem;
+  }
+}

@@ -1,0 +1,10 @@
+/* 쿠팡 파트너스 대가성 문구: 접지 않고 제목 바로 아래 */
+.disclosure {
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-m);
+  background: var(--bg-soft);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}

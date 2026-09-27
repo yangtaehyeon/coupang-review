@@ -1,0 +1,185 @@
+/* 상품 박스 */
+.hero {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+@media (min-width: 40rem) {
+  .hero {
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: center;
+  }
+}
+.heroThumb {
+  border-radius: var(--r-m);
+}
+.heroInfo {
+  min-width: 0;
+}
+.heroBrand {
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.heroName {
+  margin-top: 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.heroScore {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+}
+.scoreNum {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.heroPrice {
+  margin-top: var(--space-4);
+  color: var(--brand);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.heroCta {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+/* 핵심 요약 */
+.summary {
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--r-l);
+  background: var(--brand-soft);
+}
+.summaryTitle {
+  color: var(--brand);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+}
+.summaryList {
+  display: grid;
+  gap: 0.625rem;
+  margin-top: var(--space-3);
+}
+.summaryList li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: start;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.6;
+}
+.summaryList svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.15em;
+  color: var(--brand);
+}
+
+/* 추천 대상 */
+.fitGrid {
+  display: grid;
+  gap: var(--space-4);
+}
+.fitList {
+  display: grid;
+  gap: 0.625rem;
+}
+.fitList li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: start;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+}
+.fitList svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.15em;
+}
+.yes li {
+  font-weight: 600;
+}
+.yes svg {
+  color: var(--pos);
+}
+.fitNo {
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--line-strong);
+}
+.fitNoTitle {
+  margin-bottom: var(--space-2);
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+.no li {
+  color: var(--text-2);
+  font-size: var(--fs-ui);
+}
+.no svg {
+  color: var(--text-3);
+}
+
+/* 결론 */
+.final {
+  padding: var(--space-6);
+  border: 2px solid var(--brand);
+  border-radius: var(--r-l);
+  background: var(--card);
+}
+.finalHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.finalTitle {
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.finalScore {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.finalRow {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+@media (min-width: 40rem) {
+  .finalRow {
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: center;
+  }
+}
+.finalThumb {
+  border-radius: var(--r-m);
+}
+.finalText {
+  font-size: var(--fs-prose);
+  font-weight: 600;
+  line-height: 1.7;
+}
+.finalCta {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}

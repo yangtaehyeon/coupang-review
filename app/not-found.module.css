@@ -1,0 +1,27 @@
+.wrap {
+  max-width: var(--measure);
+  padding-top: clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
+}
+.code {
+  margin-bottom: var(--space-3);
+  font-size: clamp(3rem, 2.4rem + 3vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--brand-text);
+  font-variant-numeric: tabular-nums;
+}
+.text {
+  max-width: 34em;
+  margin-top: var(--space-3);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: var(--space-6);
+}
+.recent {
+  margin-top: var(--space-section);
+}
