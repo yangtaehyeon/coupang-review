@@ -19,7 +19,7 @@ export default function TagsPage() {
     { name: "태그", path: TAGS_PATH },
   ];
   return (
-    <div className="container page">
+    <div className="page">
       <Breadcrumbs items={crumbs} />
       <header className={styles.head}>
         <h1 className="page-title">태그 모아보기</h1>

@@ -75,7 +75,7 @@ export default async function ReviewPage({ params }: PageProps<"/reviews/[slug]"
   return (
     <>
       <JsonLd data={reviewJsonLd(review, category, crumbs)} />
-      <div className={`container ${styles.page}`}>
+      <div className={styles.page}>
         <article>
           <header className={styles.head}>
             <h1 className={styles.h1}>{review.h1}</h1>

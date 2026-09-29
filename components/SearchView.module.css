@@ -1,0 +1,47 @@
+.form {
+  display: flex;
+  gap: var(--space-2);
+  max-width: 36rem;
+  margin-top: var(--space-5);
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-m);
+  background: var(--card);
+  font-size: var(--fs-base);
+}
+.input:focus {
+  border-color: var(--brand);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brand-soft);
+}
+.button {
+  min-height: 3rem;
+  padding: 0 1.25rem;
+  border: 0;
+  border-radius: var(--r-m);
+  background: var(--brand);
+  color: var(--on-brand);
+  font-weight: 700;
+  cursor: pointer;
+}
+.button:hover {
+  background: var(--brand-hover);
+}
+.status {
+  margin: var(--space-6) 0 var(--space-4);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.status strong {
+  color: var(--text);
+}
+.empty {
+  padding: var(--space-12) 0;
+  color: var(--text-2);
+  text-align: center;
+}

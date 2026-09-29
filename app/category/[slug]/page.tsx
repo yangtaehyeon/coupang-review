@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { renderInline } from "@/components/Inline";
 import { JsonLd } from "@/components/JsonLd";
-import { PostList } from "@/components/PostCards";
+import { PostFeed } from "@/components/PostFeed";
 import { getActiveCategories, getCategory, getReviewsInCategory } from "@/lib/content";
 import { buildMetadata, categoryJsonLd, categoryPath, type Crumb } from "@/lib/seo";
 import { siteConfig } from "@/site.config";
@@ -42,7 +42,7 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
   return (
     <>
       <JsonLd data={categoryJsonLd(category, reviews, crumbs)} />
-      <div className="container">
+      <div className="page">
         <Breadcrumbs items={crumbs} />
         <header className={styles.head}>
           <h1 className="page-title">{category.h1}</h1>
@@ -57,7 +57,7 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
           <h2 id="posts-title" className="feed-title">
             {category.name} 글 <span className="count">{reviews.length}</span>
           </h2>
-          <PostList reviews={reviews} />
+          <PostFeed reviews={reviews} basePath={categoryPath(category.slug)} />
         </section>
       </div>
     </>

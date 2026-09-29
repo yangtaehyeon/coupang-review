@@ -17,7 +17,7 @@ export default function NotFound() {
   const recent = getAllReviews().slice(0, 3);
   const categories = getActiveCategories();
   return (
-    <div className="container page">
+    <div className="page">
       <div className={styles.wrap}>
         <p className={styles.code}>404</p>
         <h1 className="page-title">페이지를 찾을 수 없어요</h1>

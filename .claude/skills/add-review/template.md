@@ -245,8 +245,8 @@ const rows = [
   ["FIX", hits(headline, [...experience, ...banned]).length === 0, `title/h1/description/hook 금지 표현: ${hits(headline, [...experience, ...banned]).join(", ") || "없음"}`],
   ["FIX", hits(visible, banned).length === 0, `과장·상표·군더더기 표현: ${hits(visible, banned).join(", ") || "없음"}`],
   ["FIX", !/<[^<>]{1,40}>|YYYY/.test(JSON.stringify(r)), "템플릿 자리표시자(<...>, YYYY) 없음"],
-  ["CHECK", inRange(chars + [...r.summary, ...r.pros, ...r.faq.flatMap((f) => [f.q, f.a])].join("").replace(/\s/g, "").length, 1500, 2200),
-    "글 전체 1,500~2,200자 (공백 제외)"],
+  ["CHECK", inRange(chars + [...r.summary, ...r.pros, ...r.faq.flatMap((f) => [f.q, f.a])].join("").replace(/\s/g, "").length, 1200, 2000),
+    "본문 1,200~2,000자 (공백 제외, 제목·사양표·결론 제외라 실제 페이지는 약 1,500~2,300자)"],
   ["CHECK", inRange(pk, 3, 6), `주 키워드 노출 ${pk}회 (목표 3~6)`],
   ["CHECK", hits(visible, experience).length === 0, `경험 표현 (운영자가 실제로 쓴 글에서만 허용): ${hits(visible, experience).join(", ") || "없음"}`],
 ];

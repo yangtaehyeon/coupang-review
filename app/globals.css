@@ -72,7 +72,7 @@
 
   /* Layout */
   --container: 70rem;
-  --sidebar: 18.5rem;
+  --sidebar: 15rem;
   --measure: 45rem;
   --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
   --header-h: 4rem;
@@ -189,9 +189,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-main {
-  flex: 1 0 auto;
-}
 h1,
 h2,
 h3 {
@@ -260,24 +257,39 @@ data,
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
-/* 본문 + 사이드바 2단 (모바일 1단, 사이드바는 본문 아래) */
-.with-sidebar {
+/* 사이트 본문: 모바일은 본문 → 사이드바 1단, 데스크톱은 왼쪽 사이드바 + 본문 2단 */
+.site-body {
+  flex: 1 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-10);
-  padding-top: var(--space-6);
+  gap: 0;
   padding-bottom: var(--space-section);
 }
+.site-main {
+  min-width: 0;
+}
+/* 모바일에서는 카테고리(사이드바)를 본문 위로 */
+.site-body > aside {
+  order: -1;
+}
 @media (min-width: 64rem) {
-  .with-sidebar {
-    grid-template-columns: minmax(0, 1fr) var(--sidebar);
+  .site-body {
+    grid-template-columns: var(--sidebar) minmax(0, 1fr);
     gap: var(--space-10);
     align-items: start;
+    padding-top: var(--space-2);
+  }
+  .site-body > .site-main {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .site-body > aside {
+    grid-column: 1;
+    grid-row: 1;
   }
 }
 .page {
   padding-top: var(--space-6);
-  padding-bottom: var(--space-section);
 }
 .visually-hidden {
   position: absolute !important;

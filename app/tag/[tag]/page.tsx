@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Faq } from "@/components/Faq";
 import { renderInline } from "@/components/Inline";
 import { JsonLd } from "@/components/JsonLd";
-import { PostList } from "@/components/PostCards";
+import { PostFeed } from "@/components/PostFeed";
 import { getAllTags, getReviewsByTag, getTagInfo, isTagIndexable, resolveTag } from "@/lib/content";
 import { buildMetadata, tagJsonLd, tagPath, TAGS_PATH, type Crumb } from "@/lib/seo";
 import { siteConfig } from "@/site.config";
@@ -62,7 +62,7 @@ export default async function TagPage({ params }: PageProps<"/tag/[tag]">) {
   return (
     <>
       <JsonLd data={tagJsonLd(tag, { ...meta, faq: info?.faq }, reviews, crumbs)} />
-      <div className="container">
+      <div className="page">
         <Breadcrumbs items={crumbs} />
         <header className={styles.head}>
           <h1 className={styles.hash}>
@@ -84,7 +84,7 @@ export default async function TagPage({ params }: PageProps<"/tag/[tag]">) {
           <h2 id="posts-title" className="feed-title">
             #{tag} 글 <span className="count">{reviews.length}</span>
           </h2>
-          <PostList reviews={reviews} />
+          <PostFeed reviews={reviews} basePath={tagPath(tag)} />
         </section>
 
         {info && (info.intro.length > 1 || (info.guide && info.guide.length > 0)) ? (

@@ -1,36 +1,35 @@
-import type { Route } from "next";
+import { MagnifyingGlassIcon } from "@phosphor-icons/react/ssr";
+import Form from "next/form";
 import Link from "next/link";
-import { getActiveCategories } from "@/lib/content";
-import { categoryPath, TAGS_PATH } from "@/lib/seo";
 import { siteConfig } from "@/site.config";
-import { Avatar } from "./Avatar";
-import { NavLink } from "./NavLink";
+import { Logo } from "./Logo";
 import styles from "./SiteHeader.module.css";
 
 export function SiteHeader() {
-  const items: { href: Route; label: string }[] = [
-    { href: "/", label: "홈" },
-    { href: TAGS_PATH, label: "태그" },
-  ];
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         {/* 로고는 h1 이 아니다: 페이지마다 h1 은 본문 제목 하나만 둔다 */}
         <Link href="/" className={styles.brand}>
-          <Avatar size="s" />
+          <Logo />
           <span className={styles.name}>{siteConfig.name}</span>
         </Link>
-        <nav className={styles.nav} aria-label="주요 메뉴">
-          <ul role="list" className={styles.list}>
-            {items.map((item) => (
-              <li key={item.href}>
-                <NavLink href={item.href} className={styles.link}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <Form action="/search" className={styles.search} role="search">
+          <label htmlFor="site-search-q" className="visually-hidden">
+            리뷰 검색
+          </label>
+          <input
+            id="site-search-q"
+            name="q"
+            type="search"
+            placeholder="검색어를 입력해 주세요"
+            className={styles.input}
+            autoComplete="off"
+          />
+          <button type="submit" className={styles.button} aria-label="검색">
+            <MagnifyingGlassIcon weight="bold" aria-hidden="true" />
+          </button>
+        </Form>
       </div>
     </header>
   );

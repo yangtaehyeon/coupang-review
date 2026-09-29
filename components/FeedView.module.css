@@ -1,0 +1,117 @@
+.feed {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.total {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.total strong {
+  color: var(--text);
+}
+
+/* 정렬·몇 개씩 보기 드롭다운: 모바일은 한 줄에 반반씩 꽉 차게, 넓은 화면은 오른쪽 정렬 */
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  width: 100%;
+}
+@media (min-width: 40rem) {
+  .controls {
+    display: flex;
+    width: auto;
+  }
+}
+/* 화살표는 SVG 마스크로 그려 글자색(테마)을 그대로 따른다 */
+.control {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+.control::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  transform: translateY(-50%);
+  background-color: var(--text-2);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 6l4.5 4.5L12.5 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 6l4.5 4.5L12.5 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  pointer-events: none;
+}
+.select {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.5rem;
+  padding: 0 2.25rem 0 0.875rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-s);
+  background: var(--card);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  appearance: none;
+  cursor: pointer;
+}
+.select:hover {
+  border-color: var(--text-3);
+}
+.select:focus-visible {
+  border-color: var(--brand);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brand-soft);
+}
+
+/* 페이지 번호 */
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: var(--space-8);
+}
+.pageLink {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-s);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+a.pageLink:hover {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+.pageLink[aria-current="page"] {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--on-brand);
+}
+.disabled {
+  color: var(--text-3);
+  opacity: 0.5;
+  cursor: default;
+}
+.gap {
+  padding: 0 0.25rem;
+  color: var(--text-3);
+}

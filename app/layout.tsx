@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteSidebar } from "@/components/SiteSidebar";
 import { rootMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = rootMetadata();
@@ -23,10 +24,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           본문으로 건너뛰기
         </a>
         <SiteHeader />
-        {/* main 은 전체 폭: 페이지마다 .container 와 회색 밴드(.band)로 구역을 나눈다 */}
-        <main id="main" className="site-main">
-          {children}
-        </main>
+        {/* 데스크톱: 왼쪽 사이드바(스크롤을 따라옴) + 본문. 모바일: 본문 아래에 사이드바 */}
+        <div className="container site-body">
+          <main id="main" className="site-main">
+            {children}
+          </main>
+          <SiteSidebar />
+        </div>
       </body>
     </html>
   );

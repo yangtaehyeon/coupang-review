@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { PostGrid } from "@/components/PostCards";
+import { PostFeed } from "@/components/PostFeed";
 import { getAllReviews } from "@/lib/content";
 import { buildMetadata, homeJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/site.config";
@@ -14,6 +14,7 @@ export const metadata: Metadata = buildMetadata({
   absoluteTitle: true,
   description: siteConfig.description,
   path: "/",
+  keywords: ["쿠팡 추천템", "쿠팡 생활용품 추천", "생활용품 추천", "살림템 추천", "가전 추천", "뷰티템 추천", "가성비 추천"],
 });
 
 export default function HomePage() {
@@ -22,10 +23,10 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={homeJsonLd(siteConfig.description)} />
-      <div className={`container ${styles.main}`}>
+      <div className={styles.main}>
         <h1 className="visually-hidden">{siteConfig.headline}</h1>
         {reviews.length > 0 ? (
-          <PostGrid reviews={reviews} headingLevel="h2" />
+          <PostFeed reviews={reviews} basePath="/" headingLevel="h2" />
         ) : (
           <p className={styles.empty}>첫 리뷰를 준비하고 있어요.</p>
         )}

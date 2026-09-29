@@ -16,24 +16,22 @@ export const siteConfig = {
   name: "아이템 엔젤",
   /** 영문 표기 (JSON-LD alternateName, 한글 폰트를 못 불러올 때 OG 이미지 대체 문구) */
   alternateName: "Item Angel",
-  /** 홈 <title> 에 붙는 짧은 설명. 네이버 권고대로 자주 바꾸지 않는다 */
-  tagline: "사기 전에 읽는 제품 리뷰",
+  /** 홈 <title> 에 붙는 짧은 설명 (검색어: 쿠팡 추천템, 생활용품 추천). 네이버 권고대로 자주 바꾸지 않는다 */
+  tagline: "쿠팡 추천템·생활용품 추천 리뷰",
   /** 홈 h1 과 홈 OG 이미지 제목 */
-  headline: "살까 말까 고민될 때, 먼저 읽는 제품 리뷰",
+  headline: "쿠팡 추천템, 가성비 생활용품·가전·뷰티 추천 리뷰",
   /** 사이트 기본 meta description (홈에서 사용) */
   description:
-    "살까 말까 고민되는 생활가전과 생활용품, 가격과 장단점, 핵심 사양만 한눈에 보이게 정리해요.",
+    "쿠팡 추천템을 찾는다면 여기서 먼저 보세요. 생활용품, 가전, 뷰티까지 후기 많은 가성비 제품만 골라 가격대와 구매 포인트를 한눈에 정리해요.",
   /** 배포 도메인. NEXT_PUBLIC_SITE_URL 환경 변수로 지정하고, 끝에 / 는 붙이지 않는다 */
   url: normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
   locale: "ko_KR",
   language: "ko-KR",
   author: {
-    /** 블로거 닉네임 (헤더 로고 동그라미에 첫 글자가 들어간다). 가상 인물(AI 생성 인물)은 쓰지 않는다 */
+    /** 작성자 이름 (구조화 데이터·RSS). 가상 인물(AI 생성 인물)은 쓰지 않는다 */
     name: "아이템 엔젤",
-    /** 프로필 사진 (public 기준 경로, 예: "/profile.jpg"). 없으면 닉네임 첫 글자 동그라미로 표시 */
-    avatar: undefined as string | undefined,
     /** 한 줄 소개 (홈 OG 이미지) */
-    tagline: "살까 말까 고민될 때 먼저 찾아보는 리뷰 블로그",
+    tagline: "후기 많은 가성비템만 골라 담은 추천 리뷰",
     url: "/",
     /** 실제로 운영하는 채널만 넣는다 (예: 네이버 블로그). 없으면 빈 배열로 둔다 */
     sameAs: [] as string[],

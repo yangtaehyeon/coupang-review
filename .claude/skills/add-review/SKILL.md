@@ -66,10 +66,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/keywords.ps1 -Expand
 
 For many seeds use `-SeedFile <scratchpad>\seeds.txt -OutFile <scratchpad>\kw.txt` (UTF-8, one seed per line). "Strong signals" (`[NG 2] 키워드`) are the best candidates.
 
-- **Primary (1):** product-specific mid-tail of 2-4 어절 (`홈플래닛 초음파 가습기 4L`), present in Naver (use Naver's spacing).
-- **Secondary (8-12):** take them from the "Strong signals" list first. Brand queries (`<브랜드> <제품군>`, `… 세척`, `… 사용법`, `… 무드등 끄기`), feature (필터 없는 가습기, 상부급수형 가습기), environment and value (원룸 가습기, 침실 가습기 위치, 가성비 가습기). Skip negative ones (고장, 빨간불, 물샘, 단점). Each lands in an h3, a FAQ question or a summary line.
-- **Skip:** broad heads like `<제품군> 추천`; 내돈내산; years; anything not about this product (Partners policy).
-- **Cannibalization:** Grep `content/` for the primary. If another review already targets it, narrow it.
+Always include the broad buyer queries as seeds: `<제품군> 추천`, `가성비 <제품군>`, `<제품군 동의어> 추천` (휴지/화장지), `<규격> <제품군>` (휴지 30롤, 3겹 휴지).
+
+- **Primary (1), owner's rule (2026-09-29):** the broad buyer query people actually type, not the brand or model. Pick from "Strong signals" in both engines, 2-4 어절: `가성비 화장지 추천`, `휴지 추천`, `가성비 가습기`. The owner's words: "누가 코멧 화장지를 치고 들어오냐, 휴지 추천·가성비 휴지 이런 걸로 치지".
+- **Secondary (8-12):** the other broad queries first (`<제품군> 추천`, `두루마리휴지 추천`, `3겹 휴지`, `휴지 30롤`), then brand queries (`<브랜드> <제품군>`, `… 세척`, `… 사용법`), then feature and environment (필터 없는 가습기, 원룸 가습기). Skip negative ones (고장, 빨간불, 물샘, 단점, 형광물질 unless a source says 무첨가). Each lands in the title, an h2/h3, a FAQ question or a summary line.
+- **Skip:** community words (디시, 더쿠, 클리앙, 펨코, 뽐뿌), 내돈내산, other brands (노브랜드, 다이소, 크리넥스), years.
+- **Cannibalization:** Grep `content/` for the primary. If another review of the same product type already owns it (`휴지 추천`), take the next broad query (`부드러운 화장지 추천`, `휴지 30롤`) instead of the same one.
 
 | Placement | Rule |
 |---|---|

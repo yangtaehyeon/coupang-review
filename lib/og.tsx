@@ -3,6 +3,7 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import type { Tone } from "@/content/types";
 import { siteConfig } from "@/site.config";
+import { logoSvg } from "./logo";
 
 // 파일 기반 OG 이미지 공통 렌더러 (1200x630).
 // 공유 미리보기이면서 블로그 카드 목록의 썸네일로도 쓰이므로, 폭 360px 로 줄어도 읽히는 블로그 썸네일처럼 그린다:
@@ -250,37 +251,18 @@ function host(): string {
   }
 }
 
-function initial(): string {
-  return Array.from(siteConfig.author.name.trim())[0] ?? "";
-}
+const LOGO_DATA_URI = `data:image/svg+xml;base64,${Buffer.from(logoSvg()).toString("base64")}`;
 
-function Avatar({ size, letter }: { size: number; letter: string }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: size,
-        height: size,
-        borderRadius: size,
-        background: CORAL.deco,
-        color: INK.white,
-        fontSize: Math.round(size * 0.5),
-        fontWeight: 800,
-        letterSpacing: 0,
-      }}
-    >
-      {letter}
-    </div>
-  );
+function LogoMark({ size }: { size: number }) {
+  // eslint-disable-next-line @next/next/no-img-element -- next/og(satori) 는 <img> 만 그린다
+  return <img src={LOGO_DATA_URI} width={size} height={size} alt="" />;
 }
 
 function Signature({ large }: { large?: boolean }) {
   const size = large ? 96 : 50;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: large ? 24 : 14 }}>
-      <Avatar size={size} letter={initial()} />
+      <LogoMark size={size} />
       <div
         style={{
           display: "flex",
@@ -514,7 +496,7 @@ function FallbackThumbnail({ pal }: { pal: Palette }) {
           padding: `${PAD_Y}px ${PAD_X}px`,
         }}
       >
-        <Avatar size={64} letter={Array.from(siteConfig.alternateName)[0] ?? "R"} />
+        <LogoMark size={64} />
         <div style={{ display: "flex", fontSize: 104, letterSpacing: -4 }}>{siteConfig.alternateName}</div>
         <div style={{ display: "flex", fontSize: 30, color: INK.text3 }}>{host()}</div>
       </div>
@@ -531,7 +513,6 @@ export async function renderOgImage(input: OgInput): Promise<ImageResponse> {
     input.tag ? `#${input.tag}` : "",
     typeof input.score === "number" ? input.score.toFixed(1) : "",
     siteConfig.name,
-    initial(),
     input.profile ? host() : "",
   ].join(" ");
   const loaded = await loadFonts(text);
