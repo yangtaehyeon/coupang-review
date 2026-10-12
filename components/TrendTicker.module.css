@@ -1,11 +1,11 @@
-/* 헤더 오른쪽 인기 검색어. 자리가 좁은 화면에서는 숨긴다 */
+/* 인기 검색어. 좁은 화면: 헤더 둘째 줄 전체 폭 / 넓은 화면: 헤더 오른쪽 */
 .ticker {
   position: relative;
-  display: none;
+  flex: 1 0 100%;
+  min-width: 0;
 }
 @media (min-width: 64rem) {
   .ticker {
-    display: block;
     flex: none;
   }
 }
@@ -15,7 +15,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: 0 var(--space-2);
+  width: 100%;
+  padding: 0;
   border: 0;
   border-radius: var(--r-s);
   background: transparent;
@@ -30,9 +31,20 @@
 .window {
   --row: 2.5rem;
   display: block;
-  width: 10.5rem;
+  flex: 1;
+  min-width: 0;
   height: var(--row);
   overflow: hidden;
+}
+@media (min-width: 64rem) {
+  .toggle {
+    width: auto;
+    padding: 0 var(--space-2);
+  }
+  .window {
+    flex: none;
+    width: 10.5rem;
+  }
 }
 /* 스와이퍼처럼 한 줄씩 부드럽게 위로 미끄러진다 */
 .list {
@@ -100,7 +112,7 @@
 /* 전체 순위 패널: 아래로 미끄러지며 펼쳐진다 (grid 행 높이 0fr → 1fr) */
 .panel {
   position: absolute;
-  top: calc(100% + 0.75rem);
+  top: calc(100% + 0.5rem);
   right: 0;
   left: 0;
   z-index: var(--z-header);

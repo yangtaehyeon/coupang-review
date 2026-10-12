@@ -1,4 +1,4 @@
-/* 모바일: 본문 위에 카테고리를 가로로 넘기는 버튼 줄로, 최근 글은 숨김
+/* 모바일: 본문 위에 카테고리 버튼을 여러 줄로 감아 보여 주고, 최근 글은 숨김
    데스크톱: 왼쪽 세로 사이드바, 스크롤을 따라온다 */
 .sidebar {
   min-width: 0;
@@ -20,13 +20,8 @@
 
 .catList {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  padding-bottom: 0.25rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.catList::-webkit-scrollbar {
-  display: none;
 }
 .catList li {
   flex: none;
@@ -131,8 +126,6 @@
   .catList {
     display: grid;
     gap: 0.25rem;
-    padding: 0;
-    overflow: visible;
   }
   .catLink {
     justify-content: space-between;
