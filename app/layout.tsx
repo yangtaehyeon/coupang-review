@@ -7,6 +7,7 @@ import { RailBanner } from "@/components/RailBanner";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteSidebar } from "@/components/SiteSidebar";
 import { rootMetadata } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = rootMetadata();
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteSidebar />
         </div>
         <RailBanner />
+        <Analytics />
       </body>
     </html>
   );
