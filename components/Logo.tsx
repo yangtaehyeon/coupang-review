@@ -1,14 +1,18 @@
-import { logoSvg } from "@/lib/logo";
+import Image from "next/image";
+import { LOGO_SIZE, LOGO_SRC } from "@/lib/logo";
+import { siteConfig } from "@/site.config";
 import styles from "./Logo.module.css";
 
-/** 사이트 로고 마크 (장식용, 옆에 사이트 이름 글자를 함께 둔다) */
+/** 사이트 로고: 가로형(천사 + Itemangel 글자). 글자가 그림 안에 있어 alt 로 사이트 이름을 준다 */
 export function Logo({ className }: { className?: string }) {
   return (
-    <span
+    <Image
+      src={LOGO_SRC}
+      alt={siteConfig.name}
+      width={LOGO_SIZE.width}
+      height={LOGO_SIZE.height}
+      preload
       className={[styles.logo, className].filter(Boolean).join(" ")}
-      aria-hidden="true"
-      // 코드 안의 고정 SVG 문자열이라 외부 입력이 섞이지 않는다
-      dangerouslySetInnerHTML={{ __html: logoSvg() }}
     />
   );
 }

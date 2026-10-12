@@ -3,7 +3,7 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import type { Tone } from "@/content/types";
 import { siteConfig } from "@/site.config";
-import { logoSvg } from "./logo";
+import { LOGO_WIDE_FILE } from "./logo";
 
 // 파일 기반 OG 이미지 공통 렌더러 (1200x630).
 // 공유 미리보기이면서 블로그 카드 목록의 썸네일로도 쓰이므로, 폭 360px 로 줄어도 읽히는 블로그 썸네일처럼 그린다:
@@ -251,31 +251,22 @@ function host(): string {
   }
 }
 
-const LOGO_DATA_URI = `data:image/svg+xml;base64,${Buffer.from(logoSvg()).toString("base64")}`;
+// 얼굴 로고 파일을 한 번만 읽어 둔다 (renderOgImage 가 그리기 전에 loadLogo 를 기다린다)
+let logoDataUri = "";
+async function loadLogo(): Promise<void> {
+  if (logoDataUri) return;
+  const file = path.join(/* turbopackIgnore: true */ process.cwd(), LOGO_WIDE_FILE);
+  logoDataUri = `data:image/png;base64,${(await readFile(file)).toString("base64")}`;
+}
 
+/** 가로형 로고(천사 + Itemangel 글자). 원본 비율 577:240 */
 function LogoMark({ size }: { size: number }) {
   // eslint-disable-next-line @next/next/no-img-element -- next/og(satori) 는 <img> 만 그린다
-  return <img src={LOGO_DATA_URI} width={size} height={size} alt="" />;
+  return <img src={logoDataUri} width={Math.round((size * 577) / 240)} height={size} alt="" />;
 }
 
 function Signature({ large }: { large?: boolean }) {
-  const size = large ? 96 : 50;
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: large ? 24 : 14 }}>
-      <LogoMark size={size} />
-      <div
-        style={{
-          display: "flex",
-          fontSize: large ? 52 : 30,
-          fontWeight: large ? 900 : 700,
-          letterSpacing: large ? -2 : -0.6,
-          color: INK.text,
-        }}
-      >
-        {siteConfig.name}
-      </div>
-    </div>
-  );
+  return <LogoMark size={large ? 150 : 84} />;
 }
 
 function Star({ size, color }: { size: number; color: string }) {
@@ -496,7 +487,7 @@ function FallbackThumbnail({ pal }: { pal: Palette }) {
           padding: `${PAD_Y}px ${PAD_X}px`,
         }}
       >
-        <LogoMark size={64} />
+        <LogoMark size={110} />
         <div style={{ display: "flex", fontSize: 104, letterSpacing: -4 }}>{siteConfig.alternateName}</div>
         <div style={{ display: "flex", fontSize: 30, color: INK.text3 }}>{host()}</div>
       </div>
@@ -505,6 +496,7 @@ function FallbackThumbnail({ pal }: { pal: Palette }) {
 }
 
 export async function renderOgImage(input: OgInput): Promise<ImageResponse> {
+  await loadLogo();
   const pal = paletteOf(input.theme);
   const text = [
     input.title,

@@ -75,7 +75,7 @@
   --sidebar: 15rem;
   --measure: 45rem;
   --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
-  --header-h: 4rem;
+  --header-h: 5.5rem;
 
   /* Spacing */
   --space-1: 0.25rem;

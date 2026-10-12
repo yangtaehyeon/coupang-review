@@ -23,9 +23,9 @@ function metaFor(tag: string, count: number) {
   const info = getTagInfo(tag);
   if (info) return { title: info.title, h1: info.h1, description: info.description };
   return {
-    title: `${tag} 리뷰 모음`,
+    title: `${tag} 추천 리뷰 모음`,
     h1: `#${tag}`,
-    description: `#${tag} 태그가 붙은 리뷰 ${count}개를 모았어요. 사양과 장단점, 관리법을 공개 자료로 비교해 정리한 글이에요.`,
+    description: `${tag} 추천 제품을 찾는다면 여기서 한 번에 보세요. 쿠팡 후기 많은 ${tag} 관련 제품 ${count}개를 골라 가격대와 구매 포인트를 정리했어요.`,
   };
 }
 
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps<"/tag/[tag]">): Pro
     title: meta.title,
     description: meta.description,
     path: tagPath(tag),
-    keywords: info ? [info.primaryKeyword, ...info.secondaryKeywords] : [tag],
+    keywords: info ? [info.primaryKeyword, ...info.secondaryKeywords] : [`${tag} 추천`, tag],
     index: isTagIndexable(tag),
   });
 }

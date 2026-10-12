@@ -1,0 +1,22 @@
+.band {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+}
+.frame {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: 100px;
+  border: 0;
+}
+.note {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  text-align: center;
+}

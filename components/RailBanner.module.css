@@ -1,0 +1,21 @@
+/* 본문(.container, 최대 70rem + 좌우 여백) 오른쪽 바깥에 고정. 여백이 160px 배너보다 넓을 때만 보인다 */
+.rail {
+  display: none;
+}
+@media (min-width: 96rem) {
+  .rail {
+    position: fixed;
+    top: calc(var(--header-h) + var(--space-5));
+    left: calc(50% + var(--container) / 2 + var(--gutter) + var(--space-3));
+    z-index: var(--z-sticky);
+    display: block;
+  }
+  .rail img {
+    display: block;
+    width: 160px;
+    height: auto;
+    max-height: calc(100dvh - var(--header-h) - var(--space-10));
+    object-fit: contain;
+    border-radius: var(--r-s);
+  }
+}

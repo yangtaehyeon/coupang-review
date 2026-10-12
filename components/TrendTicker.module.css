@@ -1,0 +1,173 @@
+/* 헤더 오른쪽 인기 검색어. 자리가 좁은 화면에서는 숨긴다 */
+.ticker {
+  position: relative;
+  display: none;
+}
+@media (min-width: 64rem) {
+  .ticker {
+    display: block;
+    flex: none;
+  }
+}
+
+/* 한 줄 순위 (누르면 전체 순위가 펼쳐진다) */
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-2);
+  border: 0;
+  border-radius: var(--r-s);
+  background: transparent;
+  cursor: pointer;
+}
+.label {
+  flex: none;
+  color: var(--brand);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+}
+.window {
+  --row: 2.5rem;
+  display: block;
+  width: 10.5rem;
+  height: var(--row);
+  overflow: hidden;
+}
+/* 스와이퍼처럼 한 줄씩 부드럽게 위로 미끄러진다 */
+.list {
+  display: block;
+  transition: transform 500ms var(--ease-out);
+  will-change: transform;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: var(--row);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.rank {
+  flex: none;
+  min-width: 1.125rem;
+  color: var(--brand);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+.word {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.caret {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  color: var(--text-3);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.toggle[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+/* 순위 변동: 상승 빨강, 하락 파랑, 변동 없음 회색 */
+.change {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.125rem;
+  min-width: 1.75rem;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.up {
+  color: #e5383b;
+}
+.down {
+  color: #2f6fed;
+}
+.same {
+  color: var(--text-3);
+}
+
+/* 전체 순위 패널: 아래로 미끄러지며 펼쳐진다 (grid 행 높이 0fr → 1fr) */
+.panel {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  left: 0;
+  z-index: var(--z-header);
+  display: grid;
+  grid-template-rows: 0fr;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--r-m);
+  background: var(--card);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition:
+    grid-template-rows 280ms var(--ease-out),
+    opacity 200ms var(--ease-out),
+    transform 280ms var(--ease-out),
+    visibility 0s 280ms;
+}
+.panel[data-open="true"] {
+  grid-template-rows: 1fr;
+  border-color: var(--line);
+  box-shadow: var(--shadow-lift);
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    grid-template-rows 280ms var(--ease-out),
+    opacity 200ms var(--ease-out),
+    transform 280ms var(--ease-out),
+    visibility 0s;
+}
+.panelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+.panelTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--space-5) 1.75rem var(--space-3);
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+}
+.panelNote {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+.panelList {
+  display: grid;
+  gap: 0.125rem;
+  padding: var(--space-3) var(--space-3) var(--space-4);
+}
+.panelLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  border-radius: var(--r-s);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.panelLink:hover {
+  background: var(--bg-soft);
+}
+.panelLink:hover .word {
+  color: var(--brand);
+}

@@ -12,26 +12,28 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  min-height: 3.5rem;
+  min-height: 4rem;
+  padding-block: var(--space-2);
 }
+/* 넓은 화면: 로고(왼쪽) · 검색창(정가운데) · 인기 검색어(오른쪽). 양옆 칸 폭을 같게 해 검색창을 가운데에 둔다 */
 @media (min-width: 56rem) {
   .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 32rem) minmax(0, 1fr);
     min-height: var(--header-h);
+  }
+  .inner > :last-child:not(.search) {
+    justify-self: end;
   }
 }
 
 .brand {
   display: inline-flex;
   flex: none;
+  justify-self: start;
   align-items: center;
   gap: 0.5rem;
   border-radius: var(--r-s);
-}
-.name {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--text);
 }
 
 /* 검색창 */
@@ -55,8 +57,8 @@
 .input {
   flex: 1;
   min-width: 0;
-  min-height: 2.5rem;
-  padding: 0 0.25rem 0 1rem;
+  min-height: 2.75rem;
+  padding: 0 0.25rem 0 1.125rem;
   border: 0;
   background: transparent;
   font-size: var(--fs-sm);
@@ -66,8 +68,8 @@
   display: grid;
   place-items: center;
   flex: none;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border: 0;
   border-radius: var(--r-full);
   background: transparent;

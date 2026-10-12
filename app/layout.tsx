@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 // Pretendard 동적 서브셋: 페이지에 쓰인 글자가 든 조각(woff2)만 내려받는다 (font-display: swap)
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
+import { HeaderBanner } from "@/components/HeaderBanner";
+import { RailBanner } from "@/components/RailBanner";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteSidebar } from "@/components/SiteSidebar";
 import { rootMetadata } from "@/lib/seo";
@@ -24,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           본문으로 건너뛰기
         </a>
         <SiteHeader />
+        <HeaderBanner />
         {/* 데스크톱: 왼쪽 사이드바(스크롤을 따라옴) + 본문. 모바일: 본문 아래에 사이드바 */}
         <div className="container site-body">
           <main id="main" className="site-main">
@@ -31,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </main>
           <SiteSidebar />
         </div>
+        <RailBanner />
       </body>
     </html>
   );
