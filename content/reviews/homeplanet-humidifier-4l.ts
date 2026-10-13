@@ -168,5 +168,5 @@ export const review: Review = {
       a: "바닥에서 1m쯤 높은 곳, 얼굴에서 2m 정도 떨어진 곳이 좋아요.",
     },
   ],
-  related: ["homeplanet-handy-steam-iron-mw801"],
+  related: ["homeplanet-handy-steam-iron-mw801", "homeplanet-pocket-scale-ds05pk-200g"],
 };

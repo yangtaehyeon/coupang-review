@@ -178,5 +178,5 @@ export const review: Review = {
       a: "겹수, 롤당 길이, 롤 수를 함께 보면 돼요. 코멧 순백은 3겹, 30m, 30롤이라 1만원대 가성비 화장지로 추천해요.",
     },
   ],
-  related: [],
+  related: ["comet-kitchen-towel-2ply-150-8rolls"],
 };

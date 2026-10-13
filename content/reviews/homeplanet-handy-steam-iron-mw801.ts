@@ -184,5 +184,5 @@ export const review: Review = {
       a: "다리미판 없이 옷걸이에 걸어 놓고 다릴 수 있어 자취방에서 쓰기 좋아요. 2만원대라 부담도 적어요.",
     },
   ],
-  related: ["homeplanet-humidifier-4l"],
+  related: ["homeplanet-humidifier-4l", "homeplanet-pocket-scale-ds05pk-200g"],
 };
