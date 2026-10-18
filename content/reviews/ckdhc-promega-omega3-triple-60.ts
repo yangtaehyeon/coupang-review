@@ -185,5 +185,5 @@ export const review: Review = {
       a: "항응고제, 항혈소판제, 혈압강하제 등 의약품을 복용 중이면 전문가와 상담한 뒤 드세요. 건강기능식품이라 질병의 예방이나 치료를 위한 의약품은 아니에요.",
     },
   ],
-  related: ["chongkundang-calcium-magnesium-vitamin-d-zinc-180"],
+  related: ["chongkundang-calcium-magnesium-vitamin-d-zinc-180", "lactofit-gold-80"],
 };

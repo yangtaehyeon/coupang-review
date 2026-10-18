@@ -26,7 +26,7 @@ import type { Review } from "../types";
 export const review: Review = {
   slug: "homeplanet-handy-steam-iron-mw801",
   category: "appliances",
-  tags: ["스팀다리미", "핸디형스팀다리미", "홈플래닛", "스탠드", "자취", "가성비"],
+  tags: ["스팀다리미", "핸디형스팀다리미", "홈플래닛", "자취", "가성비"],
   title: "핸디형 스팀다리미 추천, 후기 5만건 2만원대 홈플래닛 강력추천",
   h1: "후기 5만건 2만원대 스팀다리미 강력추천: 핸디형 스팀다리미 추천은 홈플래닛 MW-801",
   description:
@@ -184,5 +184,5 @@ export const review: Review = {
       a: "다리미판 없이 옷걸이에 걸어 놓고 다릴 수 있어 자취방에서 쓰기 좋아요. 2만원대라 부담도 적어요.",
     },
   ],
-  related: ["homeplanet-humidifier-4l", "homeplanet-pocket-scale-ds05pk-200g"],
+  related: ["homeplanet-humidifier-4l", "homeplanet-pocket-scale-ds05pk-200g", "homeplanet-led-study-desk-lamp-lit-dl-13"],
 };

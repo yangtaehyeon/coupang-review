@@ -182,5 +182,5 @@ export const review: Review = {
       a: "평평하고 단단한 바닥에 놓고 물건을 계량판 정중앙에 올려요. 설명서는 귀금속은 여러 번 재서 평균값을 참고하라고 안내해요.",
     },
   ],
-  related: ["homeplanet-humidifier-4l", "homeplanet-handy-steam-iron-mw801"],
+  related: ["homeplanet-humidifier-4l", "homeplanet-handy-steam-iron-mw801", "homeplanet-led-study-desk-lamp-lit-dl-13"],
 };

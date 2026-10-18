@@ -184,5 +184,5 @@ export const review: Review = {
       a: "구성품은 충전기 본체예요. 65W로 충전하려면 5A를 지원하는 C타입 케이블을 준비하면 돼요.",
     },
   ],
-  related: ["pantone-built-in-cable-power-bank-pgb-20"],
+  related: ["pantone-built-in-cable-power-bank-pgb-20", "surgio-individual-switch-multitap-3-1-5m"],
 };

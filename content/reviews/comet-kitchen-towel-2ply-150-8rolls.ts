@@ -181,5 +181,5 @@ export const review: Review = {
       a: "프라이팬 기름 닦기, 튀김 기름 빼기, 채소 물기 제거에 쓴다는 후기가 많아요. 라벨 기준 가열 조리용은 아니에요.",
     },
   ],
-  related: ["comet-toilet-paper-3ply-30m", "evertonhouse-egg-cooker-dihy-es38"],
+  related: ["comet-toilet-paper-3ply-30m", "comet-baby-wipes-original-cap-100-10", "evertonhouse-egg-cooker-dihy-es38"],
 };
