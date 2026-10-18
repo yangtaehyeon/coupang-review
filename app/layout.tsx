@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 // Pretendard 동적 서브셋: 페이지에 쓰인 글자가 든 조각(woff2)만 내려받는다 (font-display: swap)
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
@@ -35,6 +36,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteSidebar />
         </div>
         <RailBanner />
+        {/* Vercel Web Analytics: 쿠키 없이 방문자·페이지뷰를 집계한다 */}
+        <Analytics />
       </body>
     </html>
   );
