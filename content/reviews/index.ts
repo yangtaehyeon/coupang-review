@@ -27,14 +27,19 @@ import { review as jayeonpongSteamwashDishwasherTablet55 } from "./jayeonpong-st
 import { review as kuruaPocketSpringMattressSs20cm } from "./kurua-pocket-spring-mattress-ss-20cm";
 import { review as lactofitGold80 } from "./lactofit-gold-80";
 import { review as locknlockBisfreeModularSquare600ml4 } from "./locknlock-bisfree-modular-square-600ml-4";
+import { review as medihealDailySolutionMaskPack3Set30 } from "./mediheal-daily-solution-mask-pack-3-set-30";
 import { review as miseensceneFoamHairColor2n } from "./miseenscene-foam-hair-color-2n";
+import { review as mulmeokneunhamaClosetDehumidifier300g8 } from "./mulmeokneunhama-closet-dehumidifier-300g-8";
 import { review as pantoneBuiltInCablePowerBankPgb20 } from "./pantone-built-in-cable-power-bank-pgb-20";
+import { review as perioeNewFreshAlphaToothpaste170g10 } from "./perioe-new-fresh-alpha-toothpaste-170g-10";
 import { review as persilLavenderGelMaxDrumRefill } from "./persil-lavender-gel-max-drum-refill";
 import { review as philipsSonicare3100Hx4031Black } from "./philips-sonicare-3100-hx4031-black";
 import { review as qcyT13AppWhite } from "./qcy-t13-app-white";
+import { review as showermateBodyWashCleanCotton12kg2 } from "./showermate-body-wash-clean-cotton-1-2kg-2";
 import { review as sinjimoruOPd65wGan3portCharger } from "./sinjimoru-o-pd-65w-gan-3port-charger";
 import { review as surgioIndividualSwitchMultitap315m } from "./surgio-individual-switch-multitap-3-1-5m";
 import { review as stanleyQuencherH2Flowstate887ml } from "./stanley-quencher-h2-flowstate-887ml";
+import { review as unixFoldableHairDryerUnA1690 } from "./unix-foldable-hair-dryer-un-a1690";
 
 export const reviews: Review[] = [
   homeplanetHumidifier4l,
@@ -71,4 +76,9 @@ export const reviews: Review[] = [
   frogLatexComfortRubberGlovesM3,
   philipsSonicare3100Hx4031Black,
   dobleTpuAntibacterialCuttingBoardSPalePink,
+  unixFoldableHairDryerUnA1690,
+  showermateBodyWashCleanCotton12kg2,
+  medihealDailySolutionMaskPack3Set30,
+  perioeNewFreshAlphaToothpaste170g10,
+  mulmeokneunhamaClosetDehumidifier300g8,
 ];

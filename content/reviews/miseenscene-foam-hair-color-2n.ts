@@ -176,5 +176,5 @@ export const review: Review = {
       a: "염색 48시간 전에 팔 안쪽이나 귀 뒤에 패치 테스트를 해 보세요. 장갑을 끼고 마른 머리에 바르면 돼요.",
     },
   ],
-  related: [],
+  related: ["unix-foldable-hair-dryer-un-a1690", "head-and-shoulders-cool-menthol-1-2l"],
 };

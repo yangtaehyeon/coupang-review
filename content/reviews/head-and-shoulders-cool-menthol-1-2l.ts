@@ -186,5 +186,5 @@ export const review: Review = {
       a: "젖은 모발과 두피에 마사지하듯 거품을 충분히 낸 뒤 깨끗이 헹궈요. 필요하면 한 번 더 감아도 된다고 라벨에 적혀 있어요.",
     },
   ],
-  related: ["drg-green-mild-up-sun-plus-35ml", "miseenscene-foam-hair-color-2n"],
+  related: ["showermate-body-wash-clean-cotton-1-2kg-2", "drg-green-mild-up-sun-plus-35ml", "miseenscene-foam-hair-color-2n"],
 };

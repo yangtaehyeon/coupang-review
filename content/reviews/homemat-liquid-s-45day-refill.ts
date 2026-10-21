@@ -174,5 +174,5 @@ export const review: Review = {
       a: "전자 모기향은 리필 한 통으로 45일(하루 10시간 기준) 가서 매일 매트를 갈 필요가 없어요. 코드만 꽂아 두면 돼 편하다는 후기가 많아요.",
     },
   ],
-  related: [],
+  related: ["mulmeokneunhama-closet-dehumidifier-300g-8"],
 };

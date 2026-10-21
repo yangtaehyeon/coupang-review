@@ -181,5 +181,5 @@ export const review: Review = {
       a: "코튼클라우드는 섬유유연제와 표백제를 쓰지 말라고 안내해요. 건조기는 저온 모드로 쓰면 돼요.",
     },
   ],
-  related: ["comet-toilet-paper-3ply-30m", "kurua-pocket-spring-mattress-ss-20cm"],
+  related: ["comet-toilet-paper-3ply-30m", "kurua-pocket-spring-mattress-ss-20cm", "showermate-body-wash-clean-cotton-1-2kg-2"],
 };

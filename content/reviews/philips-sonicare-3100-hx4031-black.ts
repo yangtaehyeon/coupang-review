@@ -187,5 +187,5 @@ export const review: Review = {
       a: "HX4031/32는 필립스가 새로 내놓은 뉴 소닉케어 3100이에요. 진동 세기를 3단계로 고르고 압력 센서로 알림을 받는 모델이에요.",
     },
   ],
-  related: ["head-and-shoulders-cool-menthol-1-2l", "cottoncloud-hotel-towel-200g-40s-grey-10"],
+  related: ["perioe-new-fresh-alpha-toothpaste-170g-10", "head-and-shoulders-cool-menthol-1-2l", "cottoncloud-hotel-towel-200g-40s-grey-10"],
 };

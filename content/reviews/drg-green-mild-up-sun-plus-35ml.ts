@@ -183,5 +183,5 @@ export const review: Review = {
       a: "닥터지는 저자극 데일리 선이라고 설명해요. 스킨케어 마지막 단계에서 바르면 돼요.",
     },
   ],
-  related: ["head-and-shoulders-cool-menthol-1-2l", "miseenscene-foam-hair-color-2n"],
+  related: ["mediheal-daily-solution-mask-pack-3-set-30", "head-and-shoulders-cool-menthol-1-2l", "miseenscene-foam-hair-color-2n"],
 };
