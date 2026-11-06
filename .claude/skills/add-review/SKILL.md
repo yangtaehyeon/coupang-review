@@ -23,7 +23,7 @@ One run: research, keywords, taxonomy, writing, registration and links, verifica
 | Partners widget (optional) | `<iframe src="https://coupa.ng/..." ...>`: put only the `src` value into `product.iframeUrl`. It is the product visual on cards and at the top of the post. |
 | Owner's use, notes, photos (optional) | Default: not used, research only. Only the owner's own words make it "used" (step 7). |
 
-- No Partners link: `affiliateUrl` = `https://www.coupang.com/vp/products/<productId>?itemId=<itemId>&vendorItemId=<vendorItemId>` (drop every other parameter), under the two TODO comment lines from template.md, verbatim.
+- No Partners link: make one with `npm run deeplink -- "https://www.coupang.com/vp/products/<productId>?itemId=<itemId>&vendorItemId=<vendorItemId>"` (Partners API, several URLs in one call; it never opens the link) and put the printed `link.coupang.com/a/...` link into `affiliateUrl` verbatim. If it fails (key file missing, hourly limit), use the plain URL instead (drop every other parameter), under the two TODO comment lines from template.md, verbatim. The API can't make the iframe widget; leave `iframeUrl` out until the owner sends one.
 - Ask at most ONE short question, and only when there is no product URL. A message with only a Partners short link counts as missing: don't fetch it (automated hits on the owner's link can count as invalid clicks), ask for the product page URL.
 - Several links: one review per product. Research may run in parallel; write files and build one at a time (index.ts is shared); send one combined report.
 - Dates: today in KST for `publishedAt` and `updatedAt`.

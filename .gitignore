@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Claude Code 개인 설정 (스킬은 커밋한다)
 .claude/settings.local.json
+
+# 인기 상품 조사 보고서 (npm run trending, 개인 기록)
+/reports/
