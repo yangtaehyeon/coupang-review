@@ -1,6 +1,125 @@
 .main {
   padding-top: var(--space-6);
 }
+@media (min-width: 64rem) {
+  .main {
+    padding-top: var(--space-8);
+  }
+}
+
+/* 첫 화면 소개: 따뜻한 금빛 면 + 천사 그림 */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6) var(--space-5);
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(55% 80% at 100% 0%, var(--halo), transparent 72%),
+    linear-gradient(160deg, var(--accent-soft) 0%, var(--bg-soft) 62%);
+}
+/* 좁은 화면: 그림을 오른쪽 위에 띄우고 글이 둘레로 흐른다 */
+.art {
+  float: right;
+  width: 6rem;
+  margin: -0.25rem -0.5rem 0.25rem 0.5rem;
+  shape-outside: circle(50%);
+}
+.art img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 18px rgb(176 120 10 / 0.22));
+}
+@media (min-width: 48rem) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 13rem;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-10) var(--space-10);
+  }
+  .art {
+    float: none;
+    order: 1;
+    width: auto;
+    margin: -1rem 0;
+  }
+}
+@media (min-width: 64rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    padding: var(--space-12) var(--space-12) var(--space-12) var(--space-16);
+  }
+}
+
+.heroText {
+  min-width: 0;
+}
+.title {
+  margin-top: var(--space-3);
+  font-size: clamp(1.5rem, 1.15rem + 1.75vw, 2.5rem);
+  line-height: 1.28;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+.lede {
+  clear: right;
+  max-width: 34rem;
+  margin-top: var(--space-4);
+  color: var(--text-2);
+  font-size: var(--fs-ui);
+  line-height: 1.75;
+}
+@media (min-width: 48rem) {
+  .lede {
+    font-size: var(--fs-lead);
+  }
+}
+
+/* 리뷰 수 · 카테고리 수 · 최근 업데이트 */
+/* 좁은 화면: 세 칸, 이름 위 · 값 아래 (줄이 바뀌어도 구분선이 줄 머리에 남지 않게) / 넓은 화면: 한 줄 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  margin-top: var(--space-5);
+}
+.stats > div {
+  display: grid;
+  gap: 0.125rem;
+  padding-right: var(--space-4);
+  font-size: var(--fs-sm);
+}
+.stats > div + div {
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--accent-line);
+}
+.stats dt {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
+.stats dd {
+  color: var(--text);
+  font-weight: 800;
+}
+@media (min-width: 40rem) {
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: var(--space-2);
+  }
+  .stats > div {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+  }
+  .stats dt {
+    font-size: inherit;
+  }
+}
+
+.latest {
+  margin-top: var(--space-section);
+}
 
 .empty {
   color: var(--text-2);

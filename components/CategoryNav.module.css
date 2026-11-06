@@ -1,0 +1,140 @@
+/* 좁은 화면: 아이콘 타일 격자 (항목이 늘면 줄을 바꿔 전부 보인다)
+   넓은 화면: 한 줄 탭, 현재 위치는 금색 밑줄 */
+.nav {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.list {
+  display: grid;
+  /* 360px 폰에서도 한 줄에 5개 (지금 9개 → 두 줄) */
+  grid-template-columns: repeat(auto-fill, minmax(3.75rem, 1fr));
+  gap: var(--space-3) var(--space-1);
+  padding-block: var(--space-4) var(--space-5);
+}
+
+.link {
+  display: grid;
+  justify-items: center;
+  gap: 0.4375rem;
+  padding-block: 0.125rem;
+  border-radius: var(--r-m);
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 2.875rem;
+  height: 2.875rem;
+  border-radius: 0.9375rem;
+  background: var(--tone-bg);
+  color: var(--tone-fg);
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+.icon svg {
+  width: 1.4375rem;
+  height: 1.4375rem;
+}
+.label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.1875rem;
+  white-space: nowrap;
+}
+.count {
+  color: var(--text-3);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.link:hover {
+  color: var(--text);
+}
+.link:active .icon {
+  transform: scale(0.94);
+}
+/* 현재 카테고리: 아이콘 타일에 금색 후광 링 */
+.link[aria-current="page"] {
+  color: var(--text);
+  font-weight: 800;
+}
+.link[aria-current="page"] .icon {
+  box-shadow:
+    0 0 0 2px var(--bg),
+    0 0 0 4px var(--accent);
+}
+.link[aria-current="page"] .count {
+  color: var(--accent-text);
+}
+
+@media (min-width: 64rem) {
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-1);
+    padding-block: 0;
+    margin-inline: -0.75rem;
+  }
+  .link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3.25rem;
+    padding: 0 0.75rem;
+    border-radius: 0;
+    font-size: var(--fs-ui);
+  }
+  .icon {
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 0.625rem;
+  }
+  .icon svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  .count {
+    font-size: var(--fs-xs);
+  }
+  /* 밑줄 표시: 지나가면 반만, 현재 위치면 끝까지 */
+  .link::after {
+    content: "";
+    position: absolute;
+    right: 0.75rem;
+    bottom: -1px;
+    left: 0.75rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text-3);
+    transform: scaleX(0);
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  .link:hover::after {
+    transform: scaleX(0.35);
+  }
+  .link:active .icon {
+    transform: none;
+  }
+  .link[aria-current="page"] .icon {
+    box-shadow: none;
+  }
+  .link[aria-current="page"]::after {
+    background: var(--accent);
+    height: 3px;
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .link[aria-current="page"] {
+    text-decoration: underline;
+  }
+}

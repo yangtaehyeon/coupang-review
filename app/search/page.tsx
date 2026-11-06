@@ -36,6 +36,7 @@ export default function SearchPage() {
   }));
   return (
     <div className="page">
+      <p className="eyebrow">검색</p>
       <h1 className="page-title">리뷰 검색</h1>
       <Suspense fallback={<SearchView items={items} query="" />}>
         <SearchResults items={items} />

@@ -1,10 +1,12 @@
 // 로고 원본(assets/logo-source.webp, 투명 배경 천사 캐릭터)으로 사이트 로고·파비콘·앱 아이콘을 만든다. 실행: npm run icons
 //   public/images/brand/logo.png       헤더 로고 (전신, 투명 배경, 192px)
-//   public/images/brand/logo-face.png  작은 자리용 얼굴 로고 (동그란 연하늘 배경, 192px). 공유 썸네일에 쓴다
+//   public/images/brand/logo-face.png  작은 자리용 얼굴 로고 (동그란 먹색 배경, 192px). 공유 썸네일에 쓴다
 //   app/icon.png                       브라우저 탭 아이콘 (얼굴, 192px)
 //   app/favicon.ico                    16·32·48px (구형 브라우저, 검색 결과 아이콘)
 //   app/apple-icon.png                 180px 정사각형 (아이폰 홈 화면, 모서리는 기기가 둥글게 자른다)
 //   public/logo-512.png                512px 흰 배경 전신 (구조화 데이터의 사이트 로고)
+//   public/images/brand/angel-hero.webp    홈 첫 화면 그림: 쇼핑백 든 천사 (assets/angel-hero-source.webp, 투명 배경, 800px)
+//   public/images/brand/angel-search.webp  빈 화면 그림: 돋보기 든 천사 (404, 검색 결과 없음. assets/angel-search-source.webp)
 // 작은 크기에서는 전신이 뭉개져서 얼굴(금발·천사 고리)만 잘라 쓴다.
 import fs from "node:fs";
 import sharp from "sharp";
@@ -12,7 +14,8 @@ import sharp from "sharp";
 const SOURCE = "assets/logo-source.webp";
 /** 원본(1254px)에서 얼굴과 천사 고리가 들어가는 정사각형 */
 const FACE = { left: 280, top: 30, width: 720, height: 720 };
-const SOFT_BG = "#E3EEFF";
+/** 얼굴 아이콘 배경: 사이트 버튼과 같은 먹색. 금발·금색 후광이 가장 또렷하게 보인다 (크림색은 머리카락과 섞여 뭉개진다) */
+const SOFT_BG = "#1C1917";
 const TRANSPARENT = { r: 0, g: 0, b: 0, alpha: 0 };
 
 const full = (size, background = TRANSPARENT, pad = 0) =>
@@ -24,7 +27,7 @@ const full = (size, background = TRANSPARENT, pad = 0) =>
     .png()
     .toBuffer();
 
-/** 얼굴을 연하늘 배경 위에 올린 정사각형. circle=true 면 원 모양으로 자른다 */
+/** 얼굴을 먹색 배경 위에 올린 정사각형. circle=true 면 원 모양으로 자른다 */
 async function face(size, circle = true) {
   const head = await sharp(SOURCE).extract(FACE).resize(size, size).png().toBuffer();
   const square = await sharp({ create: { width: size, height: size, channels: 4, background: SOFT_BG } })
@@ -66,10 +69,22 @@ fs.writeFileSync("public/images/brand/logo-face.png", await face(192));
 fs.writeFileSync("app/icon.png", await face(192));
 fs.writeFileSync("app/apple-icon.png", await face(180, false));
 fs.writeFileSync("public/logo-512.png", await full(512, { r: 255, g: 255, b: 255, alpha: 1 }, 32));
+// 그림 둘레의 빈 여백을 잘라 낸 뒤 정사각형에 맞추고, 가장자리가 잘리지 않게 사방 16px 를 남긴다
+for (const [src, out] of [
+  ["assets/angel-hero-source.webp", "public/images/brand/angel-hero.webp"],
+  ["assets/angel-search-source.webp", "public/images/brand/angel-search.webp"],
+]) {
+  await sharp(src)
+    .trim()
+    .resize(768, 768, { fit: "contain", background: TRANSPARENT })
+    .extend({ top: 16, bottom: 16, left: 16, right: 16, background: TRANSPARENT })
+    .webp({ quality: 88 })
+    .toFile(out);
+}
 // 큰 그림을 한 번 그린 뒤 줄여야 작은 크기에서도 가장자리가 매끄럽다
 const big = await face(192);
 const icoImages = await Promise.all(
   [16, 32, 48].map(async (size) => ({ size, data: await sharp(big).resize(size, size).png().toBuffer() })),
 );
 fs.writeFileSync("app/favicon.ico", ico(icoImages));
-console.log("만든 파일: public/images/brand/logo.png, logo-face.png, app/icon.png, app/favicon.ico, app/apple-icon.png, public/logo-512.png");
+console.log("만든 파일: public/images/brand/logo.png, logo-face.png, app/icon.png, app/favicon.ico, app/apple-icon.png, public/logo-512.png, public/images/brand/angel-hero.webp, angel-search.webp");

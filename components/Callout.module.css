@@ -1,25 +1,28 @@
+/* 팁·주의·참고 상자: 옅은 색 면 + 흰 아이콘 타일 */
 .callout {
   display: grid;
   grid-template-columns: 2.25rem minmax(0, 1fr);
   column-gap: 0.875rem;
   padding: 1.125rem 1.25rem;
+  border: 1px solid var(--co-line);
   border-radius: var(--r-l);
   font-size: var(--fs-ui);
-  line-height: 1.7;
+  line-height: 1.75;
   background: var(--co-bg);
 }
 .icon {
   width: 2.25rem;
   height: 2.25rem;
   padding: 0.4375rem;
-  border-radius: 10px;
+  border-radius: 0.75rem;
   background: var(--card);
   color: var(--co-fg);
+  box-shadow: var(--shadow-xs);
 }
 .title {
   font-size: var(--fs-base);
   line-height: 1.5;
-  font-weight: 750;
+  font-weight: 800;
   color: var(--text);
   padding-top: 0.25rem;
 }
@@ -30,16 +33,19 @@
   margin-top: 0.25rem;
 }
 .tip {
-  --co-bg: var(--tone-lemon-bg);
-  --co-fg: var(--tone-lemon-fg);
+  --co-bg: var(--accent-soft);
+  --co-fg: var(--accent-text);
+  --co-line: var(--accent-line);
 }
 .info {
-  --co-bg: var(--brand-soft);
-  --co-fg: var(--brand-text);
+  --co-bg: var(--tone-sky-bg);
+  --co-fg: var(--tone-sky-fg);
+  --co-line: color-mix(in srgb, var(--tone-sky-fg) 14%, transparent);
 }
 .warn {
   --co-bg: var(--neg-soft);
   --co-fg: var(--neg);
+  --co-line: color-mix(in srgb, var(--neg) 16%, transparent);
 }
 
 @media (forced-colors: active) {

@@ -1,0 +1,42 @@
+.toc {
+  font-size: var(--fs-sm);
+}
+.title {
+  margin-bottom: var(--space-3);
+  color: var(--text);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+/* 왼쪽 세로선 위에 지금 읽는 곳만 금색 막대 */
+.list {
+  display: grid;
+  border-left: 1px solid var(--line);
+}
+.link {
+  display: block;
+  margin-left: -1px;
+  padding: 0.375rem 0 0.375rem 1rem;
+  border-left: 2px solid transparent;
+  color: var(--text-3);
+  line-height: 1.5;
+  transition:
+    color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out);
+}
+/* 두 줄까지만. 줄임은 안쪽 span 에 걸어야 위아래 여백에 셋째 줄이 비치지 않는다 */
+.label {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+.link:hover {
+  color: var(--text);
+}
+.link[aria-current="true"] {
+  border-left-color: var(--accent);
+  color: var(--text);
+  font-weight: 700;
+}

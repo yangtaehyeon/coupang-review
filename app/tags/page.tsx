@@ -22,15 +22,27 @@ export default function TagsPage() {
     <div className="page">
       <Breadcrumbs items={crumbs} />
       <header className={styles.head}>
+        <p className="eyebrow">
+          <span>
+            태그 <span className="num">{tags.length}</span>개
+          </span>
+        </p>
         <h1 className="page-title">태그 모아보기</h1>
+        <p className={styles.lede}>제품군, 브랜드, 특징별로 관련 리뷰를 한 번에 찾아보세요. 글이 많은 태그부터 보여 드려요.</p>
       </header>
       <ul className={styles.cloud} role="list">
         {tags.map((t) => (
           <li key={t.name}>
-            <Link href={tagPath(t.name) as Route} className={styles.tag}>
-              <span className={styles.hash}>#</span>
+            <Link href={tagPath(t.name) as Route} className={styles.tag} data-hub={t.info ? "true" : undefined}>
+              <span className={styles.hash} aria-hidden="true">
+                #
+              </span>
               {t.name}
-              <span className={styles.count}>{t.count}</span>
+              {t.info ? <span className={styles.guide}>가이드</span> : null}
+              <span className={styles.count}>
+                {t.count}
+                <span className="visually-hidden">개</span>
+              </span>
             </Link>
           </li>
         ))}

@@ -1,21 +1,35 @@
-/* 본문(.container, 최대 70rem + 좌우 여백) 오른쪽 바깥에 고정. 여백이 160px 배너보다 넓을 때만 보인다 */
-.rail {
+/* 오른쪽 세로 배너 (넓은 화면 전용)
+   .track: 본문 오른쪽 바깥 여백에 놓인 세로 레일. 위쪽 배너 윗선에서 시작해 본문 끝에서 끝난다.
+   .rail : 레일 안에서 헤더 아래(--sticky-top)에 붙어 따라온다. 레일 밖으로는 못 나가므로 헤더·카테고리 메뉴·푸터를 덮지 않는다. */
+.track {
   display: none;
 }
 @media (min-width: 96rem) {
-  .rail {
-    position: fixed;
-    top: calc(var(--header-h) + var(--space-5));
-    left: calc(50% + var(--container) / 2 + var(--gutter) + var(--space-3));
-    z-index: var(--z-sticky);
-    display: block;
-  }
-  .rail img {
+  .track {
+    position: absolute;
+    /* 위쪽 쿠팡 배너(HeaderBanner, 위 여백 --space-5)와 같은 높이에서 시작 */
+    top: var(--space-5);
+    /* 본문 끝(.site-main 아래 여백 위)에서 멈춘다 */
+    bottom: var(--space-section);
+    /* 본문 오른쪽 끝에서 44px 띄운다. 화면이 좁아 오른쪽이 모자라면 24px 까지 붙여 가로 스크롤이 생기지 않게 한다 */
+    left: calc(
+      50% + var(--container) / 2 + clamp(var(--space-6), 50% - var(--container) / 2 - 160px - var(--space-4), 2.75rem)
+    );
     display: block;
     width: 160px;
-    height: auto;
-    max-height: calc(100dvh - var(--header-h) - var(--space-10));
-    object-fit: contain;
-    border-radius: var(--r-s);
+  }
+  .rail {
+    position: sticky;
+    top: var(--sticky-top);
+    z-index: var(--z-sticky);
+    display: block;
+    width: fit-content;
+  }
+  /* 화면 높이가 낮으면 비율을 지킨 채 줄인다 (배너 이미지에 자체 테두리가 있어 모서리는 깎지 않는다) */
+  .rail img {
+    display: block;
+    width: auto;
+    height: min(600px, calc(100dvh - var(--sticky-top) - var(--space-5)));
+    aspect-ratio: 160 / 600;
   }
 }

@@ -1,11 +1,12 @@
+import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react/ssr";
 import type { Route } from "next";
 import Link from "next/link";
-import { type FeedItem, feedHref, pageWindow, sortFeed, type SortValue } from "@/lib/paging";
+import { type FeedItem, feedHref, pageWindow, SORT_OPTIONS, sortFeed, type SortValue } from "@/lib/paging";
 import { FeedControls } from "./FeedControls";
 import cardStyles from "./PostCards.module.css";
 import styles from "./FeedView.module.css";
 
-/** 정렬·몇 개씩 보기 드롭다운 + 글 목록 한 페이지 + 페이지 번호. 서버와 브라우저 양쪽에서 그대로 쓴다 */
+/** 정렬 탭 + 몇 개씩 보기 + 글 목록 한 페이지 + 페이지 번호. 서버와 브라우저 양쪽에서 그대로 쓴다 */
 export function FeedView({
   items,
   basePath,
@@ -29,6 +30,20 @@ export function FeedView({
         <p className={styles.total}>
           전체 <strong className="num">{items.length}</strong>개
         </p>
+        {/* 정렬은 링크 탭: 누르면 1페이지로, 스크롤 위치는 그대로 */}
+        <nav className={styles.sort} aria-label="정렬">
+          {SORT_OPTIONS.map((o) => (
+            <Link
+              key={o.value}
+              href={feedHref(basePath, { page: 1, per, sort: o.value }, false) as Route}
+              scroll={false}
+              className={styles.sortLink}
+              aria-current={o.value === sort ? "true" : undefined}
+            >
+              {o.label}
+            </Link>
+          ))}
+        </nav>
         <FeedControls basePath={basePath} per={per} sort={sort} />
       </div>
 
@@ -38,37 +53,43 @@ export function FeedView({
         ))}
       </ul>
 
-      <nav className={styles.pager} aria-label="페이지">
-        {page > 1 ? (
-          <Link href={href(page - 1)} className={styles.pageLink} rel="prev">
-            이전
-          </Link>
-        ) : (
-          <span className={`${styles.pageLink} ${styles.disabled}`} aria-disabled="true">
-            이전
-          </span>
-        )}
-        {pageWindow(page, totalPages).map((p, i) =>
-          p === null ? (
-            <span key={`gap-${i}`} className={styles.gap} aria-hidden="true">
-              …
-            </span>
-          ) : (
-            <Link key={p} href={href(p)} className={styles.pageLink} aria-current={p === page ? "page" : undefined}>
-              {p}
+      {totalPages > 1 ? (
+        <nav className={styles.pager} aria-label="페이지">
+          {page > 1 ? (
+            <Link href={href(page - 1)} className={`${styles.pageLink} ${styles.step}`} rel="prev">
+              <CaretLeftIcon weight="bold" aria-hidden="true" />
+              이전
             </Link>
-          ),
-        )}
-        {page < totalPages ? (
-          <Link href={href(page + 1)} className={styles.pageLink} rel="next">
-            다음
-          </Link>
-        ) : (
-          <span className={`${styles.pageLink} ${styles.disabled}`} aria-disabled="true">
-            다음
-          </span>
-        )}
-      </nav>
+          ) : (
+            <span className={`${styles.pageLink} ${styles.step} ${styles.disabled}`} aria-disabled="true">
+              <CaretLeftIcon weight="bold" aria-hidden="true" />
+              이전
+            </span>
+          )}
+          {pageWindow(page, totalPages).map((p, i) =>
+            p === null ? (
+              <span key={`gap-${i}`} className={styles.gap} aria-hidden="true">
+                …
+              </span>
+            ) : (
+              <Link key={p} href={href(p)} className={styles.pageLink} aria-current={p === page ? "page" : undefined}>
+                {p}
+              </Link>
+            ),
+          )}
+          {page < totalPages ? (
+            <Link href={href(page + 1)} className={`${styles.pageLink} ${styles.step}`} rel="next">
+              다음
+              <CaretRightIcon weight="bold" aria-hidden="true" />
+            </Link>
+          ) : (
+            <span className={`${styles.pageLink} ${styles.step} ${styles.disabled}`} aria-disabled="true">
+              다음
+              <CaretRightIcon weight="bold" aria-hidden="true" />
+            </span>
+          )}
+        </nav>
+      ) : null}
     </div>
   );
 }

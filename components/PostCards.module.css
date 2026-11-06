@@ -1,3 +1,47 @@
+/* 카드 그리드. 좁은 화면: 가로형 카드를 한 줄씩(사이에 가는 선) / 40rem 이상: 세로형 카드 격자 */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+.grid > li {
+  display: flex;
+  min-width: 0;
+}
+.grid > li + li {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 40rem) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: var(--space-10) var(--space-5);
+  }
+  .grid > li + li {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: center;
+  width: 100%;
+  border-radius: var(--r-l);
+}
+@media (min-width: 40rem) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+}
+
 /* 제목 링크가 카드 전체를 덮는다 */
 .link {
   outline: none;
@@ -7,96 +51,146 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+  border-radius: var(--r-l);
 }
-.mini:focus-within {
+.card:has(.link:focus-visible) {
   outline: 2px solid var(--focus);
-  outline-offset: 4px;
-  border-radius: var(--r-m);
+  outline-offset: 6px;
+}
+
+/* 위젯 무대: 좁은 화면은 위젯 폭에 맞춘 세로 무대, 넓은 화면은 카드 폭 전체 */
+.card .thumb {
+  height: 16rem;
+}
+@media (min-width: 40rem) {
+  .card .thumb {
+    height: 17.5rem;
+  }
+}
+.card .thumb img {
+  object-fit: contain;
+}
+.card .thumb iframe {
+  transition:
+    transform var(--dur-3) var(--ease-out),
+    box-shadow var(--dur-3) var(--ease-out);
+}
+.card:hover .thumb iframe {
+  transform: translateY(-4px);
+  box-shadow:
+    0 1px 2px rgb(41 37 36 / 0.08),
+    0 22px 36px -14px rgb(41 37 36 / 0.42);
+}
+.card:hover .thumb::before {
+  opacity: 1;
+}
+
+.body {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  min-width: 0;
+}
+@media (min-width: 40rem) {
+  .body {
+    flex: 1;
+    grid-template-rows: auto auto 1fr;
+    padding: var(--space-4) var(--space-1) 0;
+  }
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  column-gap: 1rem;
-  row-gap: 0.25rem;
+  gap: 0.25rem 0.625rem;
   color: var(--text-3);
-  font-size: 0.875rem;
+  font-size: var(--fs-xs);
+  line-height: 1.4;
 }
+/* 분류: 카테고리 색 점 + 이름 */
 .cat {
-  color: var(--brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--text-2);
+  font-weight: 700;
+}
+.cat::before {
+  content: "";
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: var(--tone-fg);
+}
+
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: var(--fs-ui);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  transition: color var(--dur-2) var(--ease-out);
+}
+@media (min-width: 40rem) {
+  .title {
+    font-size: 1.0625rem;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+/* 지나가면 제목에 금색 밑줄 */
+.title a {
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 2px no-repeat;
+  transition: background-size var(--dur-3) var(--ease-out);
+}
+.card:hover .title a {
+  background-size: 100% 2px;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: 0.25rem;
+}
+@media (min-width: 40rem) {
+  .foot {
+    align-self: end;
+    padding-top: var(--space-1);
+  }
+}
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.375rem;
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
+.priceLabel {
   font-weight: 600;
+}
+.price strong {
+  color: var(--text);
+  font-size: var(--fs-base);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 .score {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  color: var(--star);
-  font-weight: 600;
-}
-.star {
-  width: 1rem;
-  height: 1rem;
-  color: var(--star);
-}
-
-/* 세로 카드 그리드 */
-.grid {
-  display: grid;
-  gap: var(--space-5);
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-}
-.grid > li {
-  display: flex;
-}
-.mini {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--card);
-  transition:
-    border-color var(--dur-2) var(--ease-out),
-    box-shadow var(--dur-2) var(--ease-out);
-}
-.mini:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow-card);
-}
-/* 사진·위젯 모두 같은 높이로 맞춘다 */
-.mini .miniThumb {
-  aspect-ratio: auto;
-  height: 16rem;
-  border-radius: 0;
-  box-shadow: none;
-  border-bottom: 1px solid var(--line);
-}
-.mini .miniThumb img {
-  object-fit: contain;
-}
-.miniBody {
-  display: grid;
-  gap: 0.5rem;
-  padding: var(--space-4);
-}
-.miniTitle {
-  font-size: 1.0625rem;
-  line-height: 1.5;
-  letter-spacing: -0.02em;
+  color: var(--text-2);
+  font-size: var(--fs-xs);
   font-weight: 700;
 }
-.mini:hover .miniTitle {
-  color: var(--brand);
-}
-.price {
-  color: var(--text-2);
-  font-size: var(--fs-sm);
-}
-.price strong {
-  color: var(--brand);
-  font-size: var(--fs-base);
-  font-weight: 800;
+.score svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  color: var(--star);
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CategoryIcon } from "@/components/CategoryIcon";
 import { renderInline } from "@/components/Inline";
 import { JsonLd } from "@/components/JsonLd";
 import { PostFeed } from "@/components/PostFeed";
@@ -44,18 +45,26 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
       <JsonLd data={categoryJsonLd(category, reviews, crumbs)} />
       <div className="page">
         <Breadcrumbs items={crumbs} />
-        <header className={styles.head}>
-          <h1 className="page-title">{category.h1}</h1>
-          {category.intro.map((paragraph, i) => (
-            <p key={i} className={styles.intro}>
-              {renderInline(paragraph)}
+        <header className={styles.head} data-tone={category.tone}>
+          <span className={styles.icon}>
+            <CategoryIcon icon={category.icon} />
+          </span>
+          <div className={styles.headText}>
+            <p className={styles.kicker}>
+              카테고리 · 리뷰 <span className="num">{reviews.length}</span>개
             </p>
-          ))}
+            <h1 className="page-title">{category.h1}</h1>
+            {category.intro.map((paragraph, i) => (
+              <p key={i} className={styles.intro}>
+                {renderInline(paragraph)}
+              </p>
+            ))}
+          </div>
         </header>
 
         <section id="posts" aria-labelledby="posts-title" className={styles.posts}>
           <h2 id="posts-title" className="feed-title">
-            {category.name} 글 <span className="count">{reviews.length}</span>
+            {category.name} 리뷰 <span className="count">{reviews.length}</span>
           </h2>
           <PostFeed reviews={reviews} basePath={categoryPath(category.slug)} />
         </section>

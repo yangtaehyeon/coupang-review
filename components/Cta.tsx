@@ -20,7 +20,9 @@ export function AffiliateButton({ product }: { product: Product }) {
   return (
     <a className={styles.primary} href={product.affiliateUrl} rel={AFFILIATE_REL} target="_blank">
       {CTA_LABEL}
-      <ArrowUpRightIcon aria-hidden="true" />
+      <span className={styles.arrow} aria-hidden="true">
+        <ArrowUpRightIcon weight="bold" />
+      </span>
       <NewWindowHint />
     </a>
   );
@@ -31,7 +33,7 @@ export function AffiliateInlineLink({ product }: { product: Product }) {
   return (
     <a className={styles.inline} href={product.affiliateUrl} rel={AFFILIATE_REL} target="_blank">
       {CTA_LABEL}
-      <ArrowUpRightIcon aria-hidden="true" />
+      <ArrowUpRightIcon weight="bold" aria-hidden="true" />
       <NewWindowHint />
     </a>
   );

@@ -41,6 +41,16 @@ const subscribe = (onChange: () => void) => {
 const currentHour = () => Math.floor(Date.now() / HOUR_MS);
 const serverHour = () => 0;
 
+// 움직임 줄이기 설정이면 순위를 자동으로 넘기지 않는다
+const REDUCE_MOTION = "(prefers-reduced-motion: reduce)";
+const subscribeMotion = (onChange: () => void) => {
+  const query = window.matchMedia(REDUCE_MOTION);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+};
+const prefersReducedMotion = () => window.matchMedia(REDUCE_MOTION).matches;
+const serverReducedMotion = () => false;
+
 /** 직전 시간대와 비교한 순위 변동: 상승 ▲n, 하락 ▼n, 그대로 - */
 function Change({ value }: { value: number }) {
   if (value > 0) {
@@ -79,8 +89,12 @@ export function TrendRanks({ words }: { words: readonly string[] }) {
   const ranks = rankFor(words, hour).map((word, i) => ({ word, rank: i + 1, change: before.indexOf(word) - i }));
   const count = ranks.length;
 
+  const reduceMotion = useSyncExternalStore(subscribeMotion, prefersReducedMotion, serverReducedMotion);
   const [open, setOpen] = useState(false);
-  const [paused, setPaused] = useState(false);
+  // 마우스를 올리거나 키보드 포커스가 안에 있으면 멈춘다
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const paused = hovered || focused || reduceMotion;
   // index === count 는 맨 뒤에 붙인 1위 복제본: 거기까지 미끄러진 뒤 애니메이션 없이 0 으로 되돌려 끊김 없이 돈다
   const [slide, setSlide] = useState({ index: 0, animate: true });
   const rootRef = useRef<HTMLDivElement>(null);
@@ -119,8 +133,12 @@ export function TrendRanks({ words }: { words: readonly string[] }) {
     <div
       ref={rootRef}
       className={styles.ticker}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
+      }}
     >
       <button
         type="button"

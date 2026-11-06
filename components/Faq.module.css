@@ -1,3 +1,4 @@
+/* 자주 묻는 질문: 펼침 목록. 질문 앞 금색 Q, 오른쪽 둥근 화살표 */
 .faq {
   border-top: 1px solid var(--line);
 }
@@ -9,34 +10,54 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 0.75rem;
   align-items: center;
-  padding: 1rem 0;
+  min-height: 3.75rem;
+  padding: 0.875rem 0;
   list-style: none;
-  cursor: pointer;
 }
 .summary::-webkit-details-marker {
   display: none;
 }
 .qMark {
-  color: var(--brand);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: var(--fs-sm);
   font-weight: 800;
 }
 .q {
   font-size: var(--fs-base);
   font-weight: 700;
   line-height: 1.5;
+  letter-spacing: -0.01em;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.summary:hover .q {
+  color: var(--text-2);
 }
 .caret {
-  width: 1rem;
-  height: 1rem;
-  color: var(--text-3);
-  transition: transform var(--dur-2) var(--ease-out);
+  box-sizing: content-box;
+  width: 0.875rem;
+  height: 0.875rem;
+  padding: 0.4375rem;
+  border-radius: 50%;
+  background: var(--bg-band);
+  color: var(--text-2);
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out);
 }
 .item[open] .caret {
   transform: rotate(180deg);
+  background: var(--primary);
+  color: var(--on-primary);
 }
 .a {
-  padding: 0 0 1rem 1.75rem;
+  padding: 0 0 var(--space-5) 2.5rem;
   color: var(--text-2);
   font-size: var(--fs-ui);
-  line-height: 1.7;
+  line-height: 1.75;
 }

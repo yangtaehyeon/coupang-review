@@ -84,7 +84,8 @@ async function loadFonts(text: string): Promise<LoadedFonts | null> {
 // ── 색 (app/globals.css 토큰과 같은 값) ────────────────
 
 const INK = { text: "#1c1917", text2: "#57534e", text3: "#716a65", white: "#ffffff" } as const;
-const CORAL = { deco: "#ff6b4a", strong: "#cf3d1a", soft: "#fff1ec" } as const;
+/** 브랜드 금색 (로고 후광). 홈·태그 공유 이미지 배경과 별·장식 */
+const HALO = { deco: "#e8a417", strong: "#8a5b00", soft: "#fcf4de" } as const;
 
 const TONES: Record<Tone, { bg: string; fg: string }> = {
   sky: { bg: "#e7f1ff", fg: "#2463c7" },
@@ -96,13 +97,13 @@ const TONES: Record<Tone, { bg: string; fg: string }> = {
   slate: { bg: "#eef0f3", fg: "#4b5563" },
 };
 
-/** 카테고리 톤 또는 "brand"(코랄: 홈, 태그) */
+/** 카테고리 톤 또는 "brand"(금색: 홈, 태그) */
 export type OgTheme = Tone | "brand";
 
 type Palette = { bg: string; fg: string; deco: string };
 
 function paletteOf(theme: OgTheme): Palette {
-  if (theme === "brand") return { bg: CORAL.soft, fg: CORAL.strong, deco: CORAL.deco };
+  if (theme === "brand") return { bg: HALO.soft, fg: HALO.strong, deco: HALO.deco };
   const tone = TONES[theme] ?? TONES.slate;
   return { bg: tone.bg, fg: tone.fg, deco: tone.fg };
 }
@@ -229,7 +230,7 @@ function layoutTitle(raw: string, maxWidth: number): TitleLayout {
 export type OgInput = {
   /** 배경 톤 */
   theme: OgTheme;
-  /** 큰 제목 (최대 2줄). "#" 로 시작하면 # 를 코랄색으로 칠한다 */
+  /** 큰 제목 (최대 2줄). "#" 로 시작하면 # 를 금색으로 칠한다 */
   title: string;
   /** 제목 아래 스티커 문구 (한 줄) */
   hook?: string;
@@ -311,7 +312,7 @@ function Score({ value }: { value: number }) {
         letterSpacing: -0.5,
       }}
     >
-      <Star size={34} color={CORAL.deco} />
+      <Star size={34} color={HALO.deco} />
       <div style={{ display: "flex" }}>{value.toFixed(1)}</div>
     </div>
   );
@@ -356,7 +357,7 @@ function Title({ layout }: { layout: TitleLayout }) {
         <div key={i} style={{ display: "flex", whiteSpace: "nowrap" }}>
           {i === 0 && line.startsWith("#") && line.length > 1 ? (
             <>
-              <span style={{ color: CORAL.deco }}>#</span>
+              <span style={{ color: HALO.deco }}>#</span>
               <span>{line.slice(1)}</span>
             </>
           ) : (
@@ -392,7 +393,7 @@ function Sticker({ text, size, color }: { text: string; size: number; color: str
   );
 }
 
-/** 배경 장식: 오른쪽 가장자리로 넘치는 큰 원(깊이감)과 코랄 반짝이 두 개 */
+/** 배경 장식: 오른쪽 가장자리로 넘치는 큰 원(깊이감)과 금색 반짝이 두 개 */
 function Backdrop({ pal }: { pal: Palette }) {
   return (
     <>
@@ -407,8 +408,8 @@ function Backdrop({ pal }: { pal: Palette }) {
           background: withAlpha(pal.deco, 0.08),
         }}
       />
-      <Sparkle size={72} color={CORAL.deco} left={1040} top={62} />
-      <Sparkle size={34} color={CORAL.deco} left={1004} top={142} />
+      <Sparkle size={72} color={HALO.deco} left={1040} top={62} />
+      <Sparkle size={34} color={HALO.deco} left={1004} top={142} />
     </>
   );
 }

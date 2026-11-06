@@ -1,65 +1,80 @@
 .pc {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 @media (min-width: 40rem) {
   .pc:has(> .col + .col) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+/* 흰 카드 + 위쪽 색 띠 (장점 초록 / 단점 장미) */
 .col {
-  padding: var(--space-5);
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6);
   border: 1px solid var(--line);
   border-radius: var(--r-l);
   background: var(--card);
+  box-shadow: var(--shadow-xs);
+}
+.col::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--col-accent);
+}
+.pros {
+  --col-accent: var(--pos);
+  --col-soft: var(--pos-soft);
+}
+.cons {
+  --col-accent: var(--neg);
+  --col-soft: var(--neg-soft);
 }
 .colTitle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: var(--fs-base);
+  gap: 0.625rem;
+  font-size: var(--fs-h3);
   font-weight: 800;
+  letter-spacing: -0.02em;
 }
 .badge {
   display: grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
+  background: var(--col-soft);
+  color: var(--col-accent);
 }
 .badge svg {
-  width: 1rem;
-  height: 1rem;
-}
-.pros .badge {
-  background: var(--pos-soft);
-  color: var(--pos);
-}
-.cons .badge {
-  background: var(--neg-soft);
-  color: var(--neg);
+  width: 1.0625rem;
+  height: 1.0625rem;
 }
 .list {
   display: grid;
-  gap: 0.625rem;
-  margin-top: var(--space-4);
+  gap: 0.75rem;
+  margin-top: var(--space-5);
 }
 .list li {
   display: grid;
-  grid-template-columns: 1rem minmax(0, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: 1.125rem minmax(0, 1fr);
+  gap: 0.625rem;
   align-items: start;
   font-size: var(--fs-ui);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 .list svg {
-  width: 1rem;
-  height: 1rem;
+  width: 1.125rem;
+  height: 1.125rem;
   margin-top: 0.2em;
+  color: var(--col-accent);
 }
-.pros .list svg {
-  color: var(--pos);
-}
-.cons .list svg {
-  color: var(--neg);
+
+@media (forced-colors: active) {
+  .col::before {
+    background: CanvasText;
+  }
 }

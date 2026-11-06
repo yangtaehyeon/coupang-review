@@ -1,4 +1,4 @@
-/* 표: 둥근 카드 안에 넣고, 행 사이에만 옅은 선을 둔다 */
+/* 표: 둥근 흰 카드 안에 넣고, 행 사이에만 옅은 선을 둔다 */
 .wrap {
   overflow-x: auto;
   border-radius: var(--r-l);
@@ -25,18 +25,18 @@
   padding: 0.875rem 1.125rem;
   text-align: left;
   font-size: var(--fs-sm);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text);
-  background: var(--bg-soft);
   border-bottom: 1px solid var(--line);
 }
 .table thead th {
   padding: 0.75rem 1.125rem;
   text-align: left;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--text-3);
   white-space: nowrap;
+  background: var(--bg-soft);
   border-bottom: 1px solid var(--line);
 }
 .table td,
@@ -61,8 +61,10 @@
   position: sticky;
   left: 0;
   z-index: 1;
-  background: var(--card);
 }
 .table tbody tr + tr > * {
   border-top: 1px solid var(--line);
+}
+.table tbody tr:hover > * {
+  background: color-mix(in srgb, var(--bg-soft) 70%, var(--card));
 }

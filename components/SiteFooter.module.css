@@ -1,0 +1,109 @@
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+/* 좁은 화면: 소개 → (카테고리 | 둘러보기) → 최근 리뷰 / 넓은 화면: 네 칸 */
+.top {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-10) var(--space-6);
+  padding-block: var(--space-12) var(--space-10);
+}
+.about,
+.recentCol {
+  grid-column: 1 / -1;
+}
+.recentCol {
+  order: 1;
+}
+@media (min-width: 64rem) {
+  .top {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr) minmax(0, 1.5fr) minmax(0, 0.75fr);
+    gap: var(--space-12);
+    padding-block: var(--space-16) var(--space-12);
+  }
+  .about,
+  .recentCol {
+    grid-column: auto;
+  }
+  .recentCol {
+    order: 0;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  border-radius: var(--r-s);
+}
+.logo {
+  height: 2.75rem;
+}
+.tagline {
+  margin-top: var(--space-3);
+  color: var(--text);
+  font-size: var(--fs-ui);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.disclosure {
+  max-width: 24rem;
+  margin-top: var(--space-2);
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  line-height: 1.65;
+}
+
+.colTitle {
+  margin-bottom: var(--space-2);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+}
+.links {
+  display: grid;
+  /* minmax(0, …) 여야 한 줄로 줄인 긴 제목이 칸을 밀어내지 않는다 */
+  grid-template-columns: minmax(0, 1fr);
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  max-width: 100%;
+  min-height: 2.25rem;
+  color: var(--text-2);
+  transition: color var(--dur-1) var(--ease-out);
+}
+.link:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+/* 긴 글 제목은 한 줄로 줄인다 (HTML 에는 전체 제목이 그대로 있다) */
+.clamp {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rss svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--accent-text);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-6);
+  padding-block: var(--space-5) var(--space-8);
+  /* 위 구분선은 본문 폭(좌우 여백 안쪽)에만 긋는다 */
+  background: linear-gradient(var(--line), var(--line)) top center / calc(100% - var(--gutter) * 2) 1px no-repeat;
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}

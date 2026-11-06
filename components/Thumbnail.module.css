@@ -3,26 +3,47 @@
   overflow: hidden;
   aspect-ratio: 1200 / 630;
   border-radius: var(--r-l);
-  background: var(--bg-band);
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.03);
+  background: var(--bg-soft);
 }
 .thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 400ms var(--ease-out);
 }
-/* 쿠팡 파트너스 위젯은 120x240 고정 크기라 늘리지 않고 가운데 둔다 */
+
+/* 쿠팡 파트너스 위젯 (120x240 고정 크기): 늘리지 않고 금빛 후광이 비치는 무대 가운데에 세운다 */
 .thumb.widget {
-  aspect-ratio: auto;
-  height: 16rem;
   display: grid;
   place-items: center;
-  background: var(--bg-soft);
+  height: 16rem;
+  aspect-ratio: auto;
+  isolation: isolate;
+  background:
+    radial-gradient(130% 75% at 50% 0%, var(--accent-soft), transparent 72%),
+    var(--bg-soft);
+}
+.thumb.widget::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--halo), transparent);
+  opacity: 0.65;
+  translate: -50% -50%;
+  transition: opacity var(--dur-3) var(--ease-out);
 }
 .widget iframe {
   display: block;
   width: 120px;
   height: 240px;
   border: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgb(41 37 36 / 0.08),
+    0 14px 28px -14px rgb(41 37 36 / 0.36);
 }

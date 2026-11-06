@@ -2,7 +2,7 @@ import { StarIcon } from "@phosphor-icons/react/ssr";
 import type { Route } from "next";
 import Link from "next/link";
 import type { Review } from "@/content/types";
-import { getCategoryName } from "@/lib/content";
+import { getCategory } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 import { reviewPath } from "@/lib/seo";
 import { Thumbnail } from "./Thumbnail";
@@ -10,44 +10,52 @@ import styles from "./PostCards.module.css";
 
 export type HeadingLevel = "h2" | "h3";
 
-function Meta({ review }: { review: Review }) {
-  return (
-    <p className={styles.meta}>
-      <span className={styles.cat}>{getCategoryName(review.category)}</span>
-      <time dateTime={review.publishedAt}>{formatDate(review.publishedAt)}</time>
-      <span className={styles.score}>
-        <StarIcon weight="fill" className={styles.star} aria-hidden="true" />
-        <span className="visually-hidden">에디터 점수 </span>
-        <span className="num">{review.rating.toFixed(1)}</span>
-      </span>
-    </p>
-  );
-}
-
-/** 세로 카드 한 장: 위젯(또는 썸네일) + 분류·날짜·점수 + 제목 */
+/**
+ * 리뷰 카드 한 장: 위젯(또는 썸네일)을 금빛 무대에 세우고 아래에 분류·날짜, 제목, 가격대·점수.
+ * 좁은 화면은 왼쪽 위젯 + 오른쪽 글의 가로형, 넓은 화면은 세로형. 제목 링크가 카드 전체를 덮는다.
+ */
 export function PostCard({ review, headingLevel = "h3" }: { review: Review; headingLevel?: HeadingLevel }) {
   const Heading = headingLevel;
+  const category = getCategory(review.category);
+  const score = review.rating.toFixed(1);
   return (
-    <article className={styles.mini}>
-      <Thumbnail review={review} sizes="(min-width: 640px) 22rem, 100vw" className={styles.miniThumb} />
-      <div className={styles.miniBody}>
-        <Meta review={review} />
-        <Heading className={styles.miniTitle}>
+    <article className={styles.card}>
+      <Thumbnail
+        review={review}
+        sizes="(min-width: 1024px) 17rem, (min-width: 640px) 45vw, 8.5rem"
+        className={styles.thumb}
+      />
+      <div className={styles.body}>
+        <p className={styles.meta}>
+          <span className={styles.cat} data-tone={category?.tone ?? "slate"}>
+            {category?.name ?? review.category}
+          </span>
+          <time dateTime={review.publishedAt}>{formatDate(review.publishedAt)}</time>
+        </p>
+        <Heading className={styles.title}>
           <Link href={reviewPath(review.slug) as Route} className={styles.link}>
             {review.h1}
           </Link>
         </Heading>
-        {review.product.priceRange ? (
-          <p className={styles.price}>
-            가격: <strong>{review.product.priceRange}</strong>
+        <div className={styles.foot}>
+          {review.product.priceRange ? (
+            <p className={styles.price}>
+              <span className={styles.priceLabel}>가격</span>
+              <strong className="num">{review.product.priceRange}</strong>
+            </p>
+          ) : null}
+          <p className={styles.score}>
+            <StarIcon weight="fill" aria-hidden="true" />
+            <span className="visually-hidden">에디터 점수 5점 만점에 </span>
+            <span className="num">{score}</span>
           </p>
-        ) : null}
+        </div>
       </div>
     </article>
   );
 }
 
-/** 세로 카드 그리드 (관련 글, 404) */
+/** 카드 그리드 (관련 글, 404) */
 export function PostGrid({ reviews, headingLevel = "h3" }: { reviews: readonly Review[]; headingLevel?: HeadingLevel }) {
   if (reviews.length === 0) return null;
   return (

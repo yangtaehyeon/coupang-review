@@ -1,18 +1,72 @@
+/* 카테고리 머리: 카테고리 색으로 옅게 물든 면 + 큰 아이콘 타일 */
 .head {
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-10);
-  padding-bottom: var(--space-8);
-  border-bottom: 1px solid var(--line);
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-3);
+  padding: var(--space-6) var(--space-5);
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(60% 120% at 100% 0%, color-mix(in srgb, var(--tone-bg) 70%, transparent), transparent 70%),
+    linear-gradient(150deg, var(--tone-bg), var(--bg-soft) 70%);
 }
-
+@media (min-width: 48rem) {
+  .head {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-10);
+  }
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 1.25rem;
+  background: var(--card);
+  color: var(--tone-fg);
+  box-shadow: var(--shadow-sm);
+}
+.icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+@media (min-width: 48rem) {
+  .icon {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 1.75rem;
+  }
+  .icon svg {
+    width: 2.875rem;
+    height: 2.875rem;
+  }
+}
+.headText {
+  min-width: 0;
+}
+.kicker {
+  margin-bottom: var(--space-2);
+  color: var(--tone-fg);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
 .intro {
-  margin-top: var(--space-2);
-  max-width: 50rem;
+  max-width: 44rem;
+  margin-top: var(--space-3);
   color: var(--text-2);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--fs-ui);
+  line-height: 1.75;
+}
+@media (min-width: 48rem) {
+  .intro {
+    font-size: var(--fs-base);
+  }
 }
 
 .posts {
-  padding-bottom: var(--space-section);
+  margin-top: var(--space-12);
 }

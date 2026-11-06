@@ -1,10 +1,10 @@
 .logo {
   flex: none;
   width: auto;
-  height: 3.5rem;
+  height: 2.875rem;
 }
-@media (min-width: 56rem) {
+@media (min-width: 64rem) {
   .logo {
-    height: 4.5rem;
+    height: 3.375rem;
   }
 }

@@ -1,4 +1,4 @@
-/* 리뷰 본문: 17px, 행간 1.8, 한 줄 약 40자 */
+/* 리뷰 본문: 17px, 행간 1.85, 한 줄 약 40자 */
 .prose {
   max-width: var(--measure);
   font-size: var(--fs-prose);
@@ -11,27 +11,44 @@
 /* 정적 페이지처럼 본문 안에 h2 가 직접 오는 경우 */
 .prose h2 {
   font-size: var(--fs-h2);
-  line-height: 1.35;
-  letter-spacing: -0.025em;
-  font-weight: 750;
+  line-height: 1.38;
+  letter-spacing: -0.03em;
+  font-weight: 800;
   margin-top: 3rem;
 }
 .prose h2 + * {
   margin-top: 0.875rem;
 }
+/* 소제목: 왼쪽 금색 점 */
 .prose h3 {
+  position: relative;
+  padding-left: 1rem;
   font-size: var(--fs-h3);
-  line-height: 1.45;
+  line-height: 1.5;
   letter-spacing: -0.02em;
   font-weight: 750;
   margin-top: 2.5rem;
 }
+.prose h3::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
 .prose h3 + * {
   margin-top: 0.625rem;
 }
+/* 굵게: 금색 형광펜 */
 .prose strong {
   font-weight: 700;
-  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--star) 28%, transparent) 62%);
+  background: linear-gradient(transparent 60%, var(--highlight) 60%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 .prose ul,
 .prose ol {
@@ -41,16 +58,17 @@
   margin-top: 0.5rem;
 }
 .prose li::marker {
-  color: var(--brand-text);
+  color: var(--accent-text);
 }
 .prose ol > li::marker {
-  font-weight: 700;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
 .prose a {
-  color: var(--brand-text);
+  color: var(--text);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.22em;
 }
 .prose > :is(figure, aside, div[role="region"]) {

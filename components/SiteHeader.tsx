@@ -21,9 +21,10 @@ export function SiteHeader() {
             id="site-search-q"
             name="q"
             type="search"
-            placeholder="검색어를 입력해 주세요"
+            placeholder="어떤 제품을 찾으세요?"
             className={styles.input}
             autoComplete="off"
+            enterKeyHint="search"
           />
           <button type="submit" className={styles.button} aria-label="검색">
             <MagnifyingGlassIcon weight="bold" aria-hidden="true" />

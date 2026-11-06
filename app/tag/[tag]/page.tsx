@@ -65,24 +65,32 @@ export default async function TagPage({ params }: PageProps<"/tag/[tag]">) {
       <div className="page">
         <Breadcrumbs items={crumbs} />
         <header className={styles.head}>
-          <h1 className={styles.hash}>
-            <span aria-hidden="true">#</span>
-            {tag}
-          </h1>
-          {info ? (
-            info.intro.slice(0, 1).map((paragraph, i) => (
-              <p key={i} className={styles.intro}>
-                {renderInline(paragraph)}
-              </p>
-            ))
-          ) : (
-            <p className={styles.intro}>{meta.description}</p>
-          )}
+          <span className={styles.mark} aria-hidden="true">
+            #
+          </span>
+          <div className={styles.headText}>
+            <p className={styles.kicker}>
+              {info ? "구매 가이드 · " : "태그 · "}리뷰 <span className="num">{reviews.length}</span>개
+            </p>
+            <h1 className={styles.hash}>
+              <span aria-hidden="true">#</span>
+              {tag}
+            </h1>
+            {info ? (
+              info.intro.slice(0, 1).map((paragraph, i) => (
+                <p key={i} className={styles.intro}>
+                  {renderInline(paragraph)}
+                </p>
+              ))
+            ) : (
+              <p className={styles.intro}>{meta.description}</p>
+            )}
+          </div>
         </header>
 
         <section id="posts" aria-labelledby="posts-title" className={styles.posts}>
           <h2 id="posts-title" className="feed-title">
-            #{tag} 글 <span className="count">{reviews.length}</span>
+            #{tag} 리뷰 <span className="count">{reviews.length}</span>
           </h2>
           <PostFeed reviews={reviews} basePath={tagPath(tag)} />
         </section>
