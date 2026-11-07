@@ -170,5 +170,9 @@ export const review: Review = {
       a: "은은하고 무난한 꽃향이라 오래 재구매하는 사람이 많아요. 쿠팡 구매 후기도 18만 건이 넘어요.",
     },
   ],
-  related: ["persil-lavender-gel-max-drum-refill", "mulmeokneunhama-closet-dehumidifier-300g-8"],
+  related: [
+    "persil-lavender-gel-max-drum-refill",
+    "mulmeokneunhama-closet-dehumidifier-300g-8",
+    "philips-lint-remover-gc026",
+  ],
 };

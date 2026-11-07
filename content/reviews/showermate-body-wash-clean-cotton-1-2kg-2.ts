@@ -198,8 +198,8 @@ export const review: Review = {
     },
   ],
   related: [
+    "cetaphil-moisturizing-lotion-591ml",
     "head-and-shoulders-cool-menthol-1-2l",
     "perioe-new-fresh-alpha-toothpaste-170g-10",
-    "cottoncloud-hotel-towel-200g-40s-grey-10",
   ],
 };

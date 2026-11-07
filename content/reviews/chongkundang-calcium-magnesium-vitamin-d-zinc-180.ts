@@ -183,5 +183,9 @@ export const review: Review = {
       a: "하루 2정이라 한 병이 3개월분이에요. 소비기한은 제조일로부터 24개월이에요.",
     },
   ],
-  related: ["ckdhc-promega-omega3-triple-60"],
+  related: [
+    "ckdhc-promega-omega3-triple-60",
+    "ckdhc-oneday21-multivitamin-mineral-120",
+    "gnm-healthy-liver-milk-thistle-30-6",
+  ],
 };

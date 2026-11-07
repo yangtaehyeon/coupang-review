@@ -182,5 +182,9 @@ export const review: Review = {
       a: "한국 상자에는 5시간 따뜻함이 표기돼 있어요. 뜨거운 음료는 빨대 대신 마시는 구멍으로 마시고, 뚜껑 아래 선까지만 채워요.",
     },
   ],
-  related: ["evertonhouse-egg-cooker-dihy-es38", "comet-kitchen-towel-2ply-150-8rolls"],
+  related: [
+    "evertonhouse-egg-cooker-dihy-es38",
+    "comet-kitchen-towel-2ply-150-8rolls",
+    "brita-maxtra-pro-pure-performance-3",
+  ],
 };

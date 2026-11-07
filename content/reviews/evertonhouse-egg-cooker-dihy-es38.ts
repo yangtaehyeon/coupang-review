@@ -189,5 +189,8 @@ export const review: Review = {
       a: "에버튼하우스는 만두, 단호박, 호빵도 찔 수 있다고 설명해요. 구매 후기에도 만두와 고구마를 쪘다는 글이 있어요.",
     },
   ],
-  related: ["comet-kitchen-towel-2ply-150-8rolls"],
+  related: [
+    "comet-kitchen-towel-2ply-150-8rolls",
+    "cuckoo-microwave-dial-20l-cmw-a201dw",
+  ],
 };

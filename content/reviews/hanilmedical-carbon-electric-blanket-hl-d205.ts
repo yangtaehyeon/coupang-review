@@ -191,5 +191,9 @@ export const review: Review = {
       a: "구매 후기에서는 싱글·슈퍼싱글 침대에 깔아 쓴다는 의견이 많아요. 라텍스·메모리폼이 아닌 일반 매트리스 위에 평평하게 펴서 쓰면 돼요.",
     },
   ],
-  related: ["kurua-pocket-spring-mattress-ss-20cm", "homeplanet-humidifier-4l", "homeplanet-handy-steam-iron-mw801"],
+  related: [
+    "pochen-quartz-heater-lm-fh700",
+    "haruon-stick-on-hot-pack-50g-40",
+    "kurua-pocket-spring-mattress-ss-20cm",
+  ],
 };

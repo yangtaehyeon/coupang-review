@@ -181,5 +181,8 @@ export const review: Review = {
       a: "실온 보관 제품이에요. CJ제일제당은 냉장 보관하면 밥맛이 떨어질 수 있다고 안내해요.",
     },
   ],
-  related: ["harim-jayeonsilrok-chicken-breast-400g"],
+  related: [
+    "harim-jayeonsilrok-chicken-breast-400g",
+    "cuckoo-microwave-dial-20l-cmw-a201dw",
+  ],
 };

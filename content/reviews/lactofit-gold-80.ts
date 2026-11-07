@@ -184,5 +184,9 @@ export const review: Review = {
       a: "등록된 섭취량은 1일 1회 1포예요. 건강기능식품이라 질병의 예방이나 치료를 위한 의약품은 아니에요.",
     },
   ],
-  related: ["ckdhc-promega-omega3-triple-60", "chongkundang-calcium-magnesium-vitamin-d-zinc-180"],
+  related: [
+    "ckdhc-promega-omega3-triple-60",
+    "chongkundang-calcium-magnesium-vitamin-d-zinc-180",
+    "ckdhc-oneday21-multivitamin-mineral-120",
+  ],
 };

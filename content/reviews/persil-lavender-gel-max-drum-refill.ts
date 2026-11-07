@@ -168,5 +168,9 @@ export const review: Review = {
       a: "네. 안전기준적합 확인신고(제 GB25-03-0017호)를 마친 제품이에요. 헨켈은 자체 피부 자극 테스트도 완료했다고 밝혀요.",
     },
   ],
-  related: ["downy-fabric-softener-white-tea-lily-1l", "mulmeokneunhama-closet-dehumidifier-300g-8"],
+  related: [
+    "downy-fabric-softener-white-tea-lily-1l",
+    "mulmeokneunhama-closet-dehumidifier-300g-8",
+    "philips-lint-remover-gc026",
+  ],
 };
