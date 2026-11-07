@@ -10,7 +10,8 @@
     "icons": "node scripts/make-icons.mjs",
     "trending": "node scripts/trending.mjs",
     "volume": "node scripts/naver-volume.mjs",
-    "deeplink": "node scripts/coupang-deeplink.mjs"
+    "deeplink": "node scripts/coupang-deeplink.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
